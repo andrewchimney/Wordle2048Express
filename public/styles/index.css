@@ -21,6 +21,7 @@ html {
     border: var(--gap-size);
     border-style: solid;
     position: relative;
+    border-radius: 1vmin;
 
 }
 .cell{
