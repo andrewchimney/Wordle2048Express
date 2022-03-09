@@ -1,3 +1,52 @@
 html {
+    background-color: rgb(56, 49, 49);
+    box-sizing: border-box;
+}
+.gameContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#board{
+    --grid-size: 5;
+    --cell-size: 17vmin;
+    --gap-size: 1.5vmin;
+    display: grid;
+    background-color: black;
+    grid-template-columns: repeat(var(--grid-size), var(--cell-size));
+    grid-template-rows: repeat(var(--grid-size), var(--cell-size));
+    padding: 0;
+    margin: auto;
+    gap: var(--gap-size);
+    border: var(--gap-size);
+    border-style: solid;
+    position: relative;
+
+}
+.cell{
     background-color: grey;
+    border-radius: 1vmin;
+
+}
+.tile{
+    --x: 4;
+    --y: 4;
+    background-color: green;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: var(--cell-size);
+    height: var(--cell-size);
+    border-radius: 1vmin;
+    left: calc(var(--x)*(var(--cell-size) + var(--gap-size)));
+    top: calc(var(--y)*(var(--cell-size) + var(--gap-size)));
+    animation: show 300ms ease-in-out;
+    transition: 150ms ease-in-out;
+}
+
+@keyframes show {
+    0%{
+        transform: scale(0);
+    }
 }
