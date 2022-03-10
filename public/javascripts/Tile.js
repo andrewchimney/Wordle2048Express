@@ -2,20 +2,22 @@ export default class Tile{
     element;
     x;
     y;
+    letter;
 
-    constructor(element, x, y){
+    constructor(element, x, y, letter){
         this.element = element;
         this.x = x;
         element.style.setProperty("--x", x);
         this.y= y;
         element.style.setProperty("--y", y);
+        this.letter = letter;
     }
-    set x(newX){
-        x = newX;
-        element.style.setProperty("--x", x);
+    setX(newX){
+        this.x = newX;
+        this.element.style.setProperty("--x", this.x);
     }
-    set y(newY){
-        y = newY;
-        element.style.setProperty("--y", y);
+    setY(newY){
+        this.y = newY;
+        this.element.style.setProperty("--y", this.y);
     }
 }

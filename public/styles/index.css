@@ -1,6 +1,23 @@
+ @font-face{
+        font-family: orbitron;
+        src: url("../fonts/orbitron/Orbitron-Regular.ttf");
+        
+    }
 html {
-    background-color: rgb(56, 49, 49);
+    background-color: black;
     box-sizing: border-box;
+    font-family: orbitron;
+}
+.text{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+h1{
+    color: white;
+}
+p{
+    color: white;
 }
 .gameContainer{
     display: flex;
@@ -24,6 +41,19 @@ html {
     border-radius: 1vmin;
 
 }
+#gameover{
+    --grid-size: 5;
+    --cell-size: 17vmin;
+    --gap-size: 1.5vmin;
+    display: none;
+    height: calc(var(--grid-size)*var(--cell-size));
+    width: calc(var(--grid-size)*var(--cell-size));
+    background-color: white;
+    padding: 0;
+    margin: auto;
+    position: absolute;
+    z-index: 1;
+}
 .cell{
     background-color: grey;
     border-radius: 1vmin;
@@ -44,6 +74,7 @@ html {
     top: calc(var(--y)*(var(--cell-size) + var(--gap-size)));
     animation: show 300ms ease-in-out;
     transition: 150ms ease-in-out;
+    font-size: 10vmin;
 }
 
 @keyframes show {
