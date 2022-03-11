@@ -1,6 +1,6 @@
 import Cell from "./Cell.js"
 import Tile from "./Tile.js";
-import WordListChecker from "./wordlistChecker.js";
+import WordListChecker from "./WordListChecker.js";
 
 export default class Grid{
     elem;
