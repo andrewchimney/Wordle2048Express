@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const port = process.env.port || 3000;
+const port = process.env.PORT || 3000;
 const fs = require("fs");
 
 app.listen(port, () => {
@@ -13,8 +13,6 @@ app.get('/', (req, res) => {
 })
 app.post("/", (req, res) => {
     console.log(req);
-
     // let scoresJSON = JSON.parse(fs.readFileSync("public/scores.json", "utf-8"));
     // scoresJSON.yeet = "askjdhflasdfka";
-     fs.writeFileSync("public/scores.json", JSON.stringify(req.body));
 })
