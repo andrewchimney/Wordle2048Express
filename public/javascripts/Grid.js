@@ -1,5 +1,6 @@
 import Cell from "./Cell.js"
 import Tile from "./Tile.js";
+import WordListChecker from "./wordlistChecker.js";
 
 export default class Grid{
     elem;
@@ -9,25 +10,31 @@ export default class Grid{
     cellArray;
     tileArray;
     wordlist;
+    wordListChecker;
 
     constructor(board, gameover, GRID_SIZE, CELL_SIZE, GAP_SIZE){
+        this.wordListChecker = new WordListChecker();
         this.GRID_SIZE = GRID_SIZE;
         this.CELL_SIZE = CELL_SIZE;
         this.GAP_SIZE = GAP_SIZE;
-        board.style.setProperty("--grid_size", GRID_SIZE);
-        board.style.setProperty("--cell_size", `${CELL_SIZE}vmin`);
-        board.style.setProperty("--grid_size", `${GAP_SIZE}vmin`);
-        gameover.style.setProperty("--grid_size", GRID_SIZE);
-        gameover.style.setProperty("--cell_size", `${CELL_SIZE}vmin`);
-        gameover.style.setProperty("--grid_size", `${GAP_SIZE}vmin`);
+        this.board=board;
+        this.gameover=gameover;
+        console.log(board);
+        this.board.style.setProperty("--grid_size", this.GRID_SIZE);
+        this.board.style.setProperty("--cell_size", `${this.CELL_SIZE}vmin`);
+        board.style.setProperty("--gap_size", `${this.GAP_SIZE}vmin`);
+        console.log(board);
+        gameover.style.setProperty("--grid_size", this.GRID_SIZE);
+        gameover.style.setProperty("--cell_size", `${this.CELL_SIZE}vmin`);
+        gameover.style.setProperty("--gap_size", `${this.GAP_SIZE}vmin`);
         this.cellArray=new Array(GRID_SIZE);
         this.tileArray=new Array(GRID_SIZE);
         for(let i=0; i< GRID_SIZE;i++){
             this.cellArray[i]=new Array(GRID_SIZE).fill(null);
             this.tileArray[i]=new Array(GRID_SIZE).fill(null);
         }
-        for(let x =0;x<5;x++){
-            for(let y=0;y<5;y++){
+        for(let x =0;x<GRID_SIZE;x++){
+            for(let y=0;y<GRID_SIZE;y++){
                 let elem = document.createElement("div");
                 elem.classList.add("cell");
                 board.appendChild(elem);
@@ -66,6 +73,9 @@ export default class Grid{
     }
     getColumn(x){
         return this.tileArray[x];
+    }
+    getTileArray(){
+         return this.tileArray;
     }
     setColumn(column, x){
         for(let i=0;i<this.GRID_SIZE;i++){
@@ -117,5 +127,30 @@ export default class Grid{
             
         }
         
+    }
+    checkGameOver(){
+        for(let x=0;x<this.GRID_SIZE;x++){
+            for(let y=0;y<this.GRID_SIZE;y++){
+                if(this.tileArray[x][y]==null){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    checkMoves(){
+        for(let x=0;x<this.GRID_SIZE;x++){
+            let array = this.getColumn(x);
+            let word="";
+            for(let i=0;i<this.GRID_SIZE;i++){
+                try{
+                    word += array[i].letter;
+                } catch {word += "0";}
+            }
+            if(this.wordListChecker.check(word)){
+                console.log(word);
+            }
+
+        }
     }
 }
