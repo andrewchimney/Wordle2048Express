@@ -86,3 +86,8 @@ p{
         transform: scale(0);
     }
 }
+@-webkit-keyframes show {
+    0%{
+        transform: scale(0);
+    }
+}
