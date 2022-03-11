@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/andrewchimney/ExpressApp/issues"
   },
-  "homepage": "https://github.com/andrewchimney/ExpressApp#readme"
+  "homepage": "https://github.com/andrewchimney/ExpressApp#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
 }
