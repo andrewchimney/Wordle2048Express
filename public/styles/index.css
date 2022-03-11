@@ -77,6 +77,7 @@ p{
     left: calc(var(--x)*(var(--cell-size) + var(--gap-size)));
     top: calc(var(--y)*(var(--cell-size) + var(--gap-size)));
     animation: show 300ms ease-in-out;
+    -webkit-animation: show 300ms ease-in-out;
     transition: 150ms ease-in-out;
     font-size: 10vmin;
 }
