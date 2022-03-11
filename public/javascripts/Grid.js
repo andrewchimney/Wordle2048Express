@@ -19,11 +19,9 @@ export default class Grid{
         this.GAP_SIZE = GAP_SIZE;
         this.board=board;
         this.gameover=gameover;
-        console.log(board);
         this.board.style.setProperty("--grid_size", this.GRID_SIZE);
         this.board.style.setProperty("--cell_size", `${this.CELL_SIZE}vmin`);
         board.style.setProperty("--gap_size", `${this.GAP_SIZE}vmin`);
-        console.log(board);
         gameover.style.setProperty("--grid_size", this.GRID_SIZE);
         gameover.style.setProperty("--cell_size", `${this.CELL_SIZE}vmin`);
         gameover.style.setProperty("--gap_size", `${this.GAP_SIZE}vmin`);
