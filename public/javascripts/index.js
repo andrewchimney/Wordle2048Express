@@ -86,7 +86,7 @@ function handleInput(e){
             moveUp();
             break;
         default:
-            console.log("use arrow key");
+            setUpInput();
     }
 }
 

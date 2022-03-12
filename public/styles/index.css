@@ -66,6 +66,7 @@ p{
 .tile{
     --x: 4;
     --y: 4;
+    user-select: none;
     background-color: green;
     position: absolute;
     display: flex;
