@@ -130,7 +130,7 @@ function newGame(){
     for(let j=0;j<elemArray.length;j++){
         elemArray[j].remove();
     }
-    gameover.style.setProperty("display", "none");
+    gameover.style.setProperty("visibility", "hidden");
     grid.addRandomLetter();
     setUpInput();
 }
