@@ -2,6 +2,7 @@ export default class WordListChecker{
     wordList;
     constructor(){
         this.getWordlist();
+        this.comparer = new Intl.Collator('en');
     }
     check(word){
         let min=0;
@@ -9,7 +10,7 @@ export default class WordListChecker{
         
         while(min<=max){
             let mid = Math.floor(max+min)>>1;
-            let compare = word.localeCompare(this.wordList[mid], "en");
+            let compare = this.comparer.compare(word, this.wordList[mid]);
             if(compare<0){
                 max=mid-1;
             } else if(compare>0){
