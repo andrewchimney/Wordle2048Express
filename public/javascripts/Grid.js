@@ -155,10 +155,8 @@ export default class Grid{
                 if(array[i+1]){
                     word+= array[i+1].letter
                 } else word+= 0;
-                console.log(word);
+                
                 if(this.wordListChecker.check(word)){
-                    console.log(x,i)
-                    console.log(this.tileArray)
                     this.tileArray[x][i].element.style.setProperty("background-color", "green");
                     this.tileArray[x][i+1].element.style.setProperty("background-color", "green");
                 }
@@ -174,10 +172,7 @@ export default class Grid{
                 if(array[i+2]){
                     word+= array[i+2].letter
                 } else word+= 0;
-                console.log(word);
                 if(this.wordListChecker.check(word)){
-                    console.log(x,i)
-                    console.log(this.tileArray)
                     this.tileArray[x][i].element.style.setProperty("background-color", "green");
                     this.tileArray[x][i+1].element.style.setProperty("background-color", "green");
                     this.tileArray[x][i+2].element.style.setProperty("background-color", "green");
@@ -196,10 +191,7 @@ export default class Grid{
             if(array[3]){
                 word+= array[3].letter
             } else word+= 0;
-            console.log(word);
             if(this.wordListChecker.check(word)){
-                console.log(x)
-                console.log(this.tileArray)
                 this.tileArray[x][0].element.style.setProperty("background-color", "green");
                 this.tileArray[x][1].element.style.setProperty("background-color", "green");
                 this.tileArray[x][2].element.style.setProperty("background-color", "green");
@@ -217,10 +209,7 @@ export default class Grid{
                 if(array[i+1]){
                     word+= array[i+1].letter
                 } else word+= 0;
-                console.log(word);
                 if(this.wordListChecker.check(word)){
-                    console.log(i,y)
-                    console.log(this.tileArray)
                     this.tileArray[i][y].element.style.setProperty("background-color", "green");
                     this.tileArray[i+1][y].element.style.setProperty("background-color", "green");
                 }
@@ -236,10 +225,7 @@ export default class Grid{
                 if(array[i+2]){
                     word+= array[i+2].letter
                 } else word+= 0;
-                console.log(word);
                 if(this.wordListChecker.check(word)){
-                    console.log(y,i)
-                    console.log(this.tileArray)
                     this.tileArray[i][y].element.style.setProperty("background-color", "green");
                     this.tileArray[i+1][y].element.style.setProperty("background-color", "green");
                     this.tileArray[i+2][y].element.style.setProperty("background-color", "green");
@@ -258,10 +244,7 @@ export default class Grid{
             if(array[3]){
                 word+= array[3].letter
             } else word+= 0;
-            console.log(word);
             if(this.wordListChecker.check(word)){
-                console.log(x)
-                console.log(this.tileArray)
                 this.tileArray[0][y].element.style.setProperty("background-color", "green");
                 this.tileArray[1][y].element.style.setProperty("background-color", "green");
                 this.tileArray[2][y].element.style.setProperty("background-color", "green");

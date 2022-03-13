@@ -53,10 +53,18 @@ p{
     margin: auto;
     position: absolute;
     z-index: 1;
-    transition: 150ms ease-in-out;
 }
 #gameover p{
     color: black;
+}
+.show{
+    opacity: 95%;
+    animation: showGameover 1000ms ease-out
+}
+@keyframes showGameover{
+    0%{
+        opacity: 0%;
+    }
 }
 .cell{
     background-color: grey;

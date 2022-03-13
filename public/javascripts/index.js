@@ -126,7 +126,8 @@ function afterMove(){
         grid.checkMoves();
         if(grid.checkGameOver()){
             grid.checkGameOver();
-            gameover.style.setProperty("display", "unset")
+            gameover.classList.add("show");
+            gameover.style.setProperty("display", "unset");
         }else setUpInput();
     } else setUpInput();
 }
