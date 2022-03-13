@@ -20,4 +20,7 @@ export default class Tile{
         this.y = newY;
         this.element.style.setProperty("--y", this.y);
     }
+    getLetter(){
+        return this.letter || 0;
+    }
 }

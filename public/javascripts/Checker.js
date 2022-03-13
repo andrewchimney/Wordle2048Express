@@ -1,9 +1,7 @@
 export default class WordListChecker{
     wordList;
     constructor(){
-         this.wordList = fetch("..//wordlist.json", {
-            method: "get"
-         }).then(response => response.json());
+        this.getWordlist();
     }
     check(word){
         let min=0;
@@ -21,5 +19,11 @@ export default class WordListChecker{
         return false;
 
 
+    }
+    async getWordlist(){
+        this.wordList = await fetch("../wordlist234.json", {
+            method: "get"
+         }).then(response => response.json());
+         this.wordList= this.wordList.wordlist;
     }
 }

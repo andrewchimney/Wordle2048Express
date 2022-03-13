@@ -84,6 +84,14 @@ export default class Grid{
         }
     }
     slide(direction){
+        for(let x=0;x<this.GRID_SIZE;x++){
+            for(let y=0;y<this.GRID_SIZE;y++){
+                if(this.tileArray[x][y]){
+                    this.tileArray[x][y].element.style.setProperty("background-color", "red");
+                }
+                
+            }
+        }
         for(let i=0;i<this.GRID_SIZE;i++){
             let array;
             if(direction=="left"){
@@ -140,15 +148,126 @@ export default class Grid{
         for(let x=0;x<this.GRID_SIZE;x++){
             let array = this.getColumn(x);
             let word="";
-            for(let i=0;i<this.GRID_SIZE;i++){
-                try{
-                    word += array[i].letter;
-                } catch {word += "0";}
-            }
-            if(this.wordListChecker.check(word)){
+            for(let i=0;i<3;i++){
+                if(array[i]){
+                    word+= array[i].letter
+                } else word+= 0;
+                if(array[i+1]){
+                    word+= array[i+1].letter
+                } else word+= 0;
                 console.log(word);
+                if(this.wordListChecker.check(word)){
+                    console.log(x,i)
+                    console.log(this.tileArray)
+                    this.tileArray[x][i].element.style.setProperty("background-color", "green");
+                    this.tileArray[x][i+1].element.style.setProperty("background-color", "green");
+                }
+                word="";
             }
-
+            for(let i=0;i<2;i++){
+                if(array[i]){
+                    word+= array[i].letter
+                } else word+= 0;
+                if(array[i+1]){
+                    word+= array[i+1].letter
+                } else word+= 0;
+                if(array[i+2]){
+                    word+= array[i+2].letter
+                } else word+= 0;
+                console.log(word);
+                if(this.wordListChecker.check(word)){
+                    console.log(x,i)
+                    console.log(this.tileArray)
+                    this.tileArray[x][i].element.style.setProperty("background-color", "green");
+                    this.tileArray[x][i+1].element.style.setProperty("background-color", "green");
+                    this.tileArray[x][i+2].element.style.setProperty("background-color", "green");
+                }
+                word="";
+            }
+            if(array[0]){
+                word+= array[0].letter
+            } else word+= 0;
+            if(array[1]){
+                word+= array[1].letter
+            } else word+= 0;
+            if(array[2]){
+                word+= array[2].letter
+            } else word+= 0;
+            if(array[3]){
+                word+= array[3].letter
+            } else word+= 0;
+            console.log(word);
+            if(this.wordListChecker.check(word)){
+                console.log(x)
+                console.log(this.tileArray)
+                this.tileArray[x][0].element.style.setProperty("background-color", "green");
+                this.tileArray[x][1].element.style.setProperty("background-color", "green");
+                this.tileArray[x][2].element.style.setProperty("background-color", "green");
+                this.tileArray[x][3].element.style.setProperty("background-color", "green");
+            }
+            word="";
+        }
+        for(let y=0;y<this.GRID_SIZE;y++){
+            let array = this.getRow(y);
+            let word="";
+            for(let i=0;i<3;i++){
+                if(array[i]){
+                    word+= array[i].letter
+                } else word+= 0;
+                if(array[i+1]){
+                    word+= array[i+1].letter
+                } else word+= 0;
+                console.log(word);
+                if(this.wordListChecker.check(word)){
+                    console.log(i,y)
+                    console.log(this.tileArray)
+                    this.tileArray[i][y].element.style.setProperty("background-color", "green");
+                    this.tileArray[i+1][y].element.style.setProperty("background-color", "green");
+                }
+                word="";
+            }
+            for(let i=0;i<2;i++){
+                if(array[i]){
+                    word+= array[i].letter
+                } else word+= 0;
+                if(array[i+1]){
+                    word+= array[i+1].letter
+                } else word+= 0;
+                if(array[i+2]){
+                    word+= array[i+2].letter
+                } else word+= 0;
+                console.log(word);
+                if(this.wordListChecker.check(word)){
+                    console.log(y,i)
+                    console.log(this.tileArray)
+                    this.tileArray[i][y].element.style.setProperty("background-color", "green");
+                    this.tileArray[i+1][y].element.style.setProperty("background-color", "green");
+                    this.tileArray[i+2][y].element.style.setProperty("background-color", "green");
+                }
+                word="";
+            }
+            if(array[0]){
+                word+= array[0].letter
+            } else word+= 0;
+            if(array[1]){
+                word+= array[1].letter
+            } else word+= 0;
+            if(array[2]){
+                word+= array[2].letter
+            } else word+= 0;
+            if(array[3]){
+                word+= array[3].letter
+            } else word+= 0;
+            console.log(word);
+            if(this.wordListChecker.check(word)){
+                console.log(x)
+                console.log(this.tileArray)
+                this.tileArray[0][y].element.style.setProperty("background-color", "green");
+                this.tileArray[1][y].element.style.setProperty("background-color", "green");
+                this.tileArray[2][y].element.style.setProperty("background-color", "green");
+                this.tileArray[3][y].element.style.setProperty("background-color", "green");
+            }
+            word="";
         }
     }
 }
