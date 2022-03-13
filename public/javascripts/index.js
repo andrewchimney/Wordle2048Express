@@ -72,7 +72,7 @@ function setUpInput(){
 
 
 function handleInput(e){
-    console.log(e.key);
+    
     switch (e.key){
         
         case "ArrowLeft":
@@ -141,7 +141,7 @@ function afterMove(){
         if(grid.checkGameOver()){
             grid.checkGameOver();
             gameover.classList.add("show");
-            gameover.style.setProperty("display", "unset");
+            gameover.style.setProperty("visibility", "unset");
         }else setUpInput();
     } else setUpInput();
 }

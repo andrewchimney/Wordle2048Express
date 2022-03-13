@@ -45,7 +45,9 @@ p{
     --grid-size: 4;
     --cell-size: 17vmin;
     --gap-size: 1.5vmin;
-    display: none;
+    visibility: hidden;
+    align-items: center;
+    text-align: center;
     height: calc(var(--grid-size)*var(--cell-size));
     width: calc(var(--grid-size)*var(--cell-size));
     background-color: white;
@@ -53,9 +55,31 @@ p{
     margin: auto;
     position: absolute;
     z-index: 1;
+    border-radius: 1vmin;
 }
 #gameover p{
+    font-size: 6vmin;
     color: black;
+}
+#gameover h1{
+    font-size: 8vmin;
+    color: black;
+}
+#gameover div{
+    font-size: 8vmin;
+    color: white;
+    background-color: grey;
+    border-radius: 1vmin;
+    width: 2em;
+    margin: auto;
+}
+#gameover button{
+    font-size: 8vmin;
+    color: white;
+    background-color: grey;
+    border-radius: 1vmin;
+    width: 6em;
+    margin: auto;
 }
 .show{
     opacity: 95%;
