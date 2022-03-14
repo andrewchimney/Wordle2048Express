@@ -125,9 +125,15 @@ p{
     0%{
         transform: scale(0);
     }
+    100%{
+        -webkit-transform: scale(1)
+    }
 }
 @-webkit-keyframes show {
     0%{
         -webkit-transform: scale(0);
+    }
+    100%{
+        -webkit-transform: scale(1)
     }
 }
