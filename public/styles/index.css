@@ -98,6 +98,8 @@ p{
 .tile{
     --x: 4;
     --y: 4;
+    --ch: false;
+    --cv: true;
     user-select: none;
     background-color: red;
     position: absolute;
@@ -109,9 +111,13 @@ p{
     border-radius: 1vmin;
     left: calc(var(--x)*(var(--cell-size) + var(--gap-size)));
     top: calc(var(--y)*(var(--cell-size) + var(--gap-size)));
-    animation: show 300ms ease-in-out;
-    -webkit-animation: show 300ms ease-in-out;
-    transition: 150ms ease-in-out;
+    animation-name: show;
+    animation-duration: 300ms;
+    animation-timing-function: ease-out;
+    -webkit-animation-name: show;
+    -webkit-animation-duration: 300ms;
+    -webkit-animation-timing-function: ease-out;
+    transition: 150ms ease-out;
     font-size: 10vmin;
 }
 

@@ -159,6 +159,8 @@ export default class Grid{
                 if(this.wordListChecker.check(word)){
                     this.tileArray[x][i].element.style.setProperty("background-color", "green");
                     this.tileArray[x][i+1].element.style.setProperty("background-color", "green");
+                    this.tileArray[x][i].element.style.setProperty("--cv", "true");
+                    this.tileArray[x][i+1].element.style.setProperty("--cv", "true");
                 }
                 word="";
             }
@@ -176,6 +178,9 @@ export default class Grid{
                     this.tileArray[x][i].element.style.setProperty("background-color", "green");
                     this.tileArray[x][i+1].element.style.setProperty("background-color", "green");
                     this.tileArray[x][i+2].element.style.setProperty("background-color", "green");
+                    this.tileArray[x][i].element.style.setProperty("--cv", "true");
+                    this.tileArray[x][i+1].element.style.setProperty("--cv", "true");
+                    this.tileArray[x][i+2].element.style.setProperty("--cv", "true");
                 }
                 word="";
             }
@@ -196,6 +201,10 @@ export default class Grid{
                 this.tileArray[x][1].element.style.setProperty("background-color", "green");
                 this.tileArray[x][2].element.style.setProperty("background-color", "green");
                 this.tileArray[x][3].element.style.setProperty("background-color", "green");
+                this.tileArray[x][0].element.style.setProperty("--cv", "true");
+                this.tileArray[x][1].element.style.setProperty("--cv", "true");
+                this.tileArray[x][2].element.style.setProperty("--cv", "true");
+                this.tileArray[x][3].element.style.setProperty("--cv", "true");
             }
             word="";
         }
@@ -212,6 +221,8 @@ export default class Grid{
                 if(this.wordListChecker.check(word)){
                     this.tileArray[i][y].element.style.setProperty("background-color", "green");
                     this.tileArray[i+1][y].element.style.setProperty("background-color", "green");
+                    this.tileArray[i][y].element.style.setProperty("--ch", "true");
+                    this.tileArray[i+1][y].element.style.setProperty("--ch", "true");
                 }
                 word="";
             }
@@ -229,6 +240,9 @@ export default class Grid{
                     this.tileArray[i][y].element.style.setProperty("background-color", "green");
                     this.tileArray[i+1][y].element.style.setProperty("background-color", "green");
                     this.tileArray[i+2][y].element.style.setProperty("background-color", "green");
+                    this.tileArray[i][y].element.style.setProperty("--ch", "true");
+                    this.tileArray[i+1][y].element.style.setProperty("--ch", "true");
+                    this.tileArray[i+2][y].element.style.setProperty("--ch", "true");
                 }
                 word="";
             }
@@ -249,6 +263,10 @@ export default class Grid{
                 this.tileArray[1][y].element.style.setProperty("background-color", "green");
                 this.tileArray[2][y].element.style.setProperty("background-color", "green");
                 this.tileArray[3][y].element.style.setProperty("background-color", "green");
+                this.tileArray[0][y].element.style.setProperty("--ch", "true");
+                this.tileArray[1][y].element.style.setProperty("--ch", "true");
+                this.tileArray[2][y].element.style.setProperty("--ch", "true");
+                this.tileArray[3][y].element.style.setProperty("--ch", "true");
             }
             word="";
         }
