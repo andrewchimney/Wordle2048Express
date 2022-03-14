@@ -109,6 +109,7 @@ export default class Grid{
 
                 for(let tile=1;tile<this.GRID_SIZE;tile++){
                     if(array[tile]){
+                        // if(array[tile].)
                         for(let nextTile=tile-1;nextTile>-1;nextTile--){
                             if(array[nextTile]==null){
                                 array[nextTile]=array[tile];
