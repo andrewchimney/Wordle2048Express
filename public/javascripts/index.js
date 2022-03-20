@@ -25,12 +25,15 @@ let touchstartY;
 let touchendX;
 let touchendY
 setUpInput();
-
+document.querySelector(".bitcoin").onclick = bitcoinCopy;
 document.querySelectorAll(".newGame")[0].onclick = newGame;
 document.querySelectorAll(".newGame")[1].onclick = newGame;
 window.addEventListener("keydown", function(e){
     if(e.key=="Enter") newGame();
 });
+window.addEventListener("keydown", function(e){
+    e.preventDefault();
+}); //stop scrolling on arrow keys
 board.addEventListener("touchstart", function(e){
     e.preventDefault();
     touchstartX = e.changedTouches[0].screenX;
@@ -83,7 +86,6 @@ function setUpInput(){
 
 
 function handleInput(e){
-    
     switch (e.key){
         
         case "ArrowLeft":
@@ -160,6 +162,10 @@ function afterMove(){
             gameover.classList.add("show");
             gameover.style.setProperty("visibility", "unset");
         }else setUpInput();
+}
+function bitcoinCopy(){
+    navigator.clipboard.writeText("bc1qxadr4ln7sqrlqcr03mh87a45avgzd8e3d3vep5");
+    alert("Copied to clipboard")
 }
 
 

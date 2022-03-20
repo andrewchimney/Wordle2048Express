@@ -22,7 +22,7 @@ export default class WordListChecker{
 
     }
     async getWordlist(){
-        this.wordList = await fetch("../wordlist234.json", {
+        this.wordList = await fetch("../wordlists/wordlist234.json", {
             method: "get"
          }).then(response => response.json());
          this.wordList= this.wordList.wordlist;

@@ -19,15 +19,17 @@
     crossorigin="anonymous"></script>
 </head>
 <body>
+    <header>
         <h1>wordle2048</h1>
-    <div class="scoreContainer">
+    </header>
+    <section class="scoreContainer">
         <span>Score:</span>
         <div class="score currentScore">0</div>
         <span>Best:</span>
         <div class="score bestScore">0</div>
         <button class="newGame">New Game</button>
-    </div>
-    <div class="gameContainer">
+    </section>
+    <main class="gameContainer">
         <div id="gameover">
 
             <h1>Game Over</h1>
@@ -45,12 +47,27 @@
                 <li ><button>share</button></li>
                 <li class="newGame"><button>new game</button></li>
             </ul>
-
-
         </div>
+
+
         <div id="board">
         </div>
-    </div>
+
+
+    </main>
+    <footer class="footer" > 
+        <ul class="donate">
+            <li class="bitcoin" data-tooltip="bc1qxadr4ln7sqrlqcr03mh87a45avgzd8e3d3vep5">
+                <span><img src="./images/bitcoinlogo.png" alt="bitcoin logo"> bitcoin</span>
+            </li>
+            <li>
+                <a href="https://www.paypal.com/us/home"><img src="./images/paypallogo.png" alt="paypal logo"> paypal</a>
+            </li>
+            <li>
+                <a href="https://venmo.com/"><img src="./images/venmologo.png" alt="venmo logo"> venmo</a>
+            </li>
+        </ul>
+    </footer>
 
 </body>
 </html>
