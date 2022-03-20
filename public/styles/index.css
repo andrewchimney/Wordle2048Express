@@ -1,23 +1,22 @@
- @font-face{
+@font-face{
         font-family: orbitron;
         src: url("../fonts/orbitron/Orbitron-Regular.ttf");
         
-    }
+}
+
 html {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
     background-color: black;
     box-sizing: border-box;
     font-family: orbitron;
 }
-.text{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 h1{
+    font-size: 7vmin;
     color: white;
-}
-p{
-    color: white;
+    margin: 3vmin;
 }
 .gameContainer{
     display: flex;
