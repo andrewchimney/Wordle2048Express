@@ -120,6 +120,19 @@ p{
     transition: 150ms ease-out;
     font-size: 10vmin;
 }
+.scoreContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10vmin;
+    color: white;
+}
+.scoreContainer .score{
+    color: black;
+    background-color: white;
+    padding: 1vmin;
+    border-radius: 1vmin;
+}
 
 @keyframes show {
     0%{

@@ -11,9 +11,11 @@ export default class Grid{
     tileArray;
     wordlist;
     wordListChecker;
+    score;
 
     constructor(board, gameover, GRID_SIZE, CELL_SIZE, GAP_SIZE){
         this.wordListChecker = new WordListChecker();
+        this.score =0;
         this.GRID_SIZE = GRID_SIZE;
         this.CELL_SIZE = CELL_SIZE;
         this.GAP_SIZE = GAP_SIZE;
@@ -84,7 +86,6 @@ export default class Grid{
         }
     }
     slide(direction){
-        console.log('turn')
         for(let i=0;i<this.GRID_SIZE;i++){
             let array;
             if(direction=="left"){
@@ -102,26 +103,26 @@ export default class Grid{
            
             if(array[0]){
                 if(array[0].ch && (direction=="left"|| direction=="right")){
-                    console.log("here")
+                    this.score+= array[0].value;
                     array[0].element.remove();
                     array[0]=null;
                 } else if(array[0].cv && (direction=="up"|| direction=="down")){
-                    console.log("here")
+                    this.score+= array[0].value;
                     array[0].element.remove();
                     array[0]=null;
                 }
             }
-              
+                          
                 for(let tile=1;tile<this.GRID_SIZE;tile++){
                     if(array[tile]){
                         if(array[tile].ch && (direction=="left"|| direction=="right")){
-                            console.log("here")
+                            this.score += array[tile].value;
                             array[tile].element.remove();
                             array[tile]=null;
                             continue;
                         }
                         if(array[tile].cv && (direction=="up"|| direction=="down")){
-                            console.log("here")
+                            this.score+= array[tile].value;
                             array[tile].element.remove();
                             array[tile]=null;
                             continue;

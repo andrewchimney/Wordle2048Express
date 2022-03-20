@@ -7,6 +7,10 @@ const CELL_SIZE = 17;
 const GAP_SIZE = 1.5;
 const board = document.getElementById("board");
 const gameover = document.getElementById("gameover");
+const currentScore= document.getElementsByClassName("currentScore");
+const bestScore= document.getElementsByClassName("bestScore");
+bestScore[0].textContent=localStorage.getItem("best");
+bestScore[1].textContent=localStorage.getItem("best");
 const grid = new Grid(board, gameover, GRID_SIZE, CELL_SIZE, GAP_SIZE);
 grid.addRandomLetter();
 let touchstartX;
@@ -130,14 +134,22 @@ function newGame(){
     for(let j=0;j<elemArray.length;j++){
         elemArray[j].remove();
     }
+    grid.score=0;
+    currentScore[0].textContent= grid.score;
     gameover.style.setProperty("visibility", "hidden");
     grid.addRandomLetter();
     setUpInput();
 }
 function afterMove(){
+        currentScore[0].textContent= grid.score;
         grid.addRandomLetter();
         if(!grid.checkMoves() && grid.checkGameOver()){
-            grid.checkGameOver();
+            if(localStorage.getItem("best")<grid.score){
+                localStorage.setItem("best",grid.score);
+                bestScore[0].textContent=grid.score;
+                bestScore[1].textContent=grid.score;
+            }
+            currentScore[1].textContent =grid.score
             gameover.classList.add("show");
             gameover.style.setProperty("visibility", "unset");
         }else setUpInput();
