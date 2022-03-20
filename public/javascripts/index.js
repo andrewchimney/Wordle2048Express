@@ -135,15 +135,12 @@ function newGame(){
     setUpInput();
 }
 function afterMove(){
-    if(true){
         grid.addRandomLetter();
-        grid.checkMoves();
-        if(grid.checkGameOver()){
+        if(!grid.checkMoves() && grid.checkGameOver()){
             grid.checkGameOver();
             gameover.classList.add("show");
             gameover.style.setProperty("visibility", "unset");
         }else setUpInput();
-    } else setUpInput();
 }
 
 

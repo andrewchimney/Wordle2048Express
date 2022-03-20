@@ -84,14 +84,7 @@ export default class Grid{
         }
     }
     slide(direction){
-        for(let x=0;x<this.GRID_SIZE;x++){
-            for(let y=0;y<this.GRID_SIZE;y++){
-                if(this.tileArray[x][y]){
-                    this.tileArray[x][y].element.style.setProperty("background-color", "red");
-                }
-                
-            }
-        }
+        console.log('turn')
         for(let i=0;i<this.GRID_SIZE;i++){
             let array;
             if(direction=="left"){
@@ -106,10 +99,33 @@ export default class Grid{
             if(direction=="down"){
                 array= this.getColumn(i).reverse();
             }
-
+           
+            if(array[0]){
+                if(array[0].ch && (direction=="left"|| direction=="right")){
+                    console.log("here")
+                    array[0].element.remove();
+                    array[0]=null;
+                } else if(array[0].cv && (direction=="up"|| direction=="down")){
+                    console.log("here")
+                    array[0].element.remove();
+                    array[0]=null;
+                }
+            }
+              
                 for(let tile=1;tile<this.GRID_SIZE;tile++){
                     if(array[tile]){
-                        // if(array[tile].)
+                        if(array[tile].ch && (direction=="left"|| direction=="right")){
+                            console.log("here")
+                            array[tile].element.remove();
+                            array[tile]=null;
+                            continue;
+                        }
+                        if(array[tile].cv && (direction=="up"|| direction=="down")){
+                            console.log("here")
+                            array[tile].element.remove();
+                            array[tile]=null;
+                            continue;
+                        }
                         for(let nextTile=tile-1;nextTile>-1;nextTile--){
                             if(array[nextTile]==null){
                                 array[nextTile]=array[tile];
@@ -146,6 +162,17 @@ export default class Grid{
         return true;
     }
     checkMoves(){
+        let movesAvaiable=false;
+        for(let x=0;x<this.GRID_SIZE;x++){
+            for(let y=0;y<this.GRID_SIZE;y++){
+                if(this.tileArray[x][y]){
+                    this.tileArray[x][y].setCvhFalse();
+                    
+
+                }
+                
+            }
+        }
         for(let x=0;x<this.GRID_SIZE;x++){
             let array = this.getColumn(x);
             let word="";
@@ -158,10 +185,9 @@ export default class Grid{
                 } else word+= 0;
                 
                 if(this.wordListChecker.check(word)){
-                    this.tileArray[x][i].element.style.setProperty("background-color", "green");
-                    this.tileArray[x][i+1].element.style.setProperty("background-color", "green");
-                    this.tileArray[x][i].element.style.setProperty("--cv", "true");
-                    this.tileArray[x][i+1].element.style.setProperty("--cv", "true");
+                    movesAvaiable=true;
+                    this.tileArray[x][i].setCvTrue();
+                    this.tileArray[x][i+1].setCvTrue();
                 }
                 word="";
             }
@@ -176,12 +202,10 @@ export default class Grid{
                     word+= array[i+2].letter
                 } else word+= 0;
                 if(this.wordListChecker.check(word)){
-                    this.tileArray[x][i].element.style.setProperty("background-color", "green");
-                    this.tileArray[x][i+1].element.style.setProperty("background-color", "green");
-                    this.tileArray[x][i+2].element.style.setProperty("background-color", "green");
-                    this.tileArray[x][i].element.style.setProperty("--cv", "true");
-                    this.tileArray[x][i+1].element.style.setProperty("--cv", "true");
-                    this.tileArray[x][i+2].element.style.setProperty("--cv", "true");
+                    movesAvaiable=true;
+                    this.tileArray[x][i].setCvTrue();
+                    this.tileArray[x][i+1].setCvTrue();
+                    this.tileArray[x][i+2].setCvTrue();
                 }
                 word="";
             }
@@ -198,14 +222,11 @@ export default class Grid{
                 word+= array[3].letter
             } else word+= 0;
             if(this.wordListChecker.check(word)){
-                this.tileArray[x][0].element.style.setProperty("background-color", "green");
-                this.tileArray[x][1].element.style.setProperty("background-color", "green");
-                this.tileArray[x][2].element.style.setProperty("background-color", "green");
-                this.tileArray[x][3].element.style.setProperty("background-color", "green");
-                this.tileArray[x][0].element.style.setProperty("--cv", "true");
-                this.tileArray[x][1].element.style.setProperty("--cv", "true");
-                this.tileArray[x][2].element.style.setProperty("--cv", "true");
-                this.tileArray[x][3].element.style.setProperty("--cv", "true");
+                movesAvaiable=true;
+                this.tileArray[x][0].setCvTrue();
+                this.tileArray[x][1].setCvTrue();
+                this.tileArray[x][2].setCvTrue();
+                this.tileArray[x][3].setCvTrue();
             }
             word="";
         }
@@ -220,10 +241,11 @@ export default class Grid{
                     word+= array[i+1].letter
                 } else word+= 0;
                 if(this.wordListChecker.check(word)){
-                    this.tileArray[i][y].element.style.setProperty("background-color", "green");
-                    this.tileArray[i+1][y].element.style.setProperty("background-color", "green");
-                    this.tileArray[i][y].element.style.setProperty("--ch", "true");
-                    this.tileArray[i+1][y].element.style.setProperty("--ch", "true");
+                    movesAvaiable=true;
+                    this.tileArray[i][y].setChTrue();
+                    this.tileArray[i+1][y].setChTrue();
+                    
+                    
                 }
                 word="";
             }
@@ -238,12 +260,10 @@ export default class Grid{
                     word+= array[i+2].letter
                 } else word+= 0;
                 if(this.wordListChecker.check(word)){
-                    this.tileArray[i][y].element.style.setProperty("background-color", "green");
-                    this.tileArray[i+1][y].element.style.setProperty("background-color", "green");
-                    this.tileArray[i+2][y].element.style.setProperty("background-color", "green");
-                    this.tileArray[i][y].element.style.setProperty("--ch", "true");
-                    this.tileArray[i+1][y].element.style.setProperty("--ch", "true");
-                    this.tileArray[i+2][y].element.style.setProperty("--ch", "true");
+                    movesAvaiable=true;
+                    this.tileArray[i][y].setChTrue();
+                    this.tileArray[i+1][y].setChTrue();
+                    this.tileArray[i+2][y].setChTrue();
                 }
                 word="";
             }
@@ -260,16 +280,13 @@ export default class Grid{
                 word+= array[3].letter
             } else word+= 0;
             if(this.wordListChecker.check(word)){
-                this.tileArray[0][y].element.style.setProperty("background-color", "green");
-                this.tileArray[1][y].element.style.setProperty("background-color", "green");
-                this.tileArray[2][y].element.style.setProperty("background-color", "green");
-                this.tileArray[3][y].element.style.setProperty("background-color", "green");
-                this.tileArray[0][y].element.style.setProperty("--ch", "true");
-                this.tileArray[1][y].element.style.setProperty("--ch", "true");
-                this.tileArray[2][y].element.style.setProperty("--ch", "true");
-                this.tileArray[3][y].element.style.setProperty("--ch", "true");
+                movesAvaiable=true;
+                this.tileArray[0][y].setChTrue();
+                this.tileArray[1][y].setChTrue();
+                this.tileArray[2][y].setChTrue();
+                this.tileArray[3][y].setChTrue();
             }
-            word="";
         }
+        return movesAvaiable;
     }
 }

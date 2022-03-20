@@ -26,12 +26,35 @@ export default class Tile{
         this.y = newY;
         this.element.style.setProperty("--y", this.y);
     }
-    setCh(bool){
-        this.ch= bool;
+    setChTrue(){
+        this.ch =true;
         this.element.style.setProperty("--ch", this.ch);
+        this.element.style.setProperty("background-color", "green");
     }
-    setCv(bool){
-        this.cv= bool;
+    setCvTrue(){
+        this.cv =true;
         this.element.style.setProperty("--cv", this.cv);
+        this.element.style.setProperty("background-color", "green");
+    }
+    setChFalse(){
+        this.ch =false;
+        this.element.style.setProperty("--ch", this.ch);
+        this.element.style.setProperty("background-color", "red");
+    }
+    setCvFalse(){
+        this.cv =false;
+        this.element.style.setProperty("--cv", this.cv);
+        this.element.style.setProperty("background-color", "red");
+    }
+    setCvhFalse(){
+        this.cv =false;
+        this.element.style.setProperty("--cv", this.cv);
+        this.ch =false;
+        this.element.style.setProperty("--ch", this.ch);
+        this.element.style.setProperty("background-color", "red");
+
+    }
+    isCollapse(){
+        return this.cv || this.ch;
     }
 }
