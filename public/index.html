@@ -21,23 +21,34 @@
 <body>
     <div class="text">
         <h1>wordle2048</h1>
-        <p>form 5 letter words and then collapse them</p>
-        <button class="newGame">New Game</button>
     </div>
     <div class="scoreContainer">
         <span>Score:</span>
         <div class="score currentScore">0</div>
         <span>Best:</span>
         <div class="score bestScore">0</div>
+        <button class="newGame">New Game</button>
     </div>
     <div class="gameContainer">
         <div id="gameover">
-            <h1>gameover</h1>
-            <span>Score:</span>
-            <div class="score currentScore">0</div>
-            <span>Best:</span>
-            <div class="score bestScore">0</div>
-            <button class="newGame">New Game</button>
+
+            <h1>Game Over</h1>
+            <ul class="scoreList">
+                <li>
+                    <span>Score:</span>
+                    <span class="score currentScore">0</span>
+                </li>
+                <li>
+                    <span>Best:</span>
+                    <span class="score bestScore">0</span>
+                </li>
+            </ul>
+            <ul class="buttons">
+                <li ><button>share</button></li>
+                <li class="newGame"><button>new game</button></li>
+            </ul>
+
+
         </div>
         <div id="board">
         </div>

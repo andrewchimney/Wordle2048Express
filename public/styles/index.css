@@ -57,29 +57,46 @@ p{
     z-index: 1;
     border-radius: 1vmin;
 }
-#gameover p{
-    font-size: 6vmin;
-    color: black;
-}
 #gameover h1{
-    font-size: 8vmin;
+    font-size: 9vmin;
     color: black;
+    padding: 0;
+    padding-top: 7vmin;
+    margin: 0;
 }
-#gameover div{
-    font-size: 8vmin;
-    color: white;
-    background-color: grey;
-    border-radius: 1vmin;
-    width: 2em;
-    margin: auto;
+#gameover .scoreList{
+    font-size: 7vmin;
+    padding: 4vmin;
+    margin: 0;
+    list-style: none;
 }
-#gameover button{
-    font-size: 8vmin;
+#gameover .buttons{
+    margin: 0;
+    padding:0;
+    margin-top: 5vmin;
+    display: flex;
+    height: 10vmin;
+    justify-content: center;
+    gap: 3vmin;
+    list-style: none;
+}
+#gameover .buttons li{
+    margin: 0;
+    text-decoration: none;
+    padding: 0;
+}
+#gameover .buttons button{
+    font-family: orbitron;
+    font-size: 5.5vmin;
+    cursor: pointer;
+    user-select: none;
+    background-color: black;
     color: white;
-    background-color: grey;
+    border: none;
+    padding: .2em;
     border-radius: 1vmin;
-    width: 6em;
     margin: auto;
+    text-decoration: none;
 }
 .show{
     opacity: 95%;
@@ -121,17 +138,31 @@ p{
     font-size: 10vmin;
 }
 .scoreContainer{
+    font-size: 3vmin;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10vmin;
+    gap: 5vmin;
     color: white;
 }
 .scoreContainer .score{
     color: black;
     background-color: white;
     padding: 1vmin;
+    padding-top: .5vmin;
+    padding-bottom: .5vmin;
     border-radius: 1vmin;
+}
+.scoreContainer button{
+    font-family: orbitron;
+    font-size: 3vmin;
+    color: black;
+    background-color: white;
+    padding: 1vmin;
+    padding-top: .5vmin;
+    padding-bottom: .5vmin;
+    border-radius: 1vmin;
+    border: none;
 }
 
 @keyframes show {

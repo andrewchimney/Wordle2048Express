@@ -69,6 +69,7 @@ div{
     gap: 3vmin;
 }
 button{
+    font-family: orbitron;
     font-size: 5vmin;
     cursor: pointer;
     user-select: none;
