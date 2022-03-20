@@ -1,0 +1,87 @@
+html{
+    background-color: black;
+    color: white;
+    font-size: 5vmin;
+}
+section{
+    
+    text-align: center;
+    
+}
+ul{
+    display: block;
+    padding: 0;
+    margin: 0;
+}
+li{
+    text-decoration: none;
+    display: inline;
+    color: black;
+    margin: 2vmin;
+    padding: 1vmin;
+    border-radius: 1vmin;
+    background-color: white;
+}
+
+a{
+    color: black;
+}
+a:visited{
+    color: black;
+}
+img{
+    position: relative;
+    top: 2vmin;
+    width: 8vmin;
+    height: 8vmin;
+}
+div{
+    text-align: center;
+    margin: auto;
+    margin-top: 50px;
+    background-color: white;
+    width: 50vmin;
+    height: 50vmin;
+}
+.text{
+    font-size: 7vmin;
+    color: black;
+    padding: 0;
+    padding-top: 5vmin;
+    margin: 0;
+}
+.scores{
+    padding: 2vmin;
+    margin: 0;
+    text-decoration: none;
+}
+.score{
+    padding: 0;
+    margin: 0;
+    display: block;
+    text-decoration: none;
+}
+.buttons{
+    margin-top: 5vmin;
+    display: flex;
+    height: 10vmin;
+    justify-content: center;
+    gap: 3vmin;
+}
+button{
+    font-size: 5vmin;
+    cursor: pointer;
+    user-select: none;
+    background-color: black;
+    color: white;
+    border: none;
+    padding: .2em;
+    border-radius: 1vmin;
+    margin: auto;
+    text-decoration: none;
+}
+.libutton{
+    margin: 0;
+    text-decoration: none;
+    padding: 0;
+}
