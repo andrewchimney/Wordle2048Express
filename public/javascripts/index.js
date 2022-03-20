@@ -9,8 +9,15 @@ const board = document.getElementById("board");
 const gameover = document.getElementById("gameover");
 const currentScore= document.getElementsByClassName("currentScore");
 const bestScore= document.getElementsByClassName("bestScore");
-bestScore[0].textContent=localStorage.getItem("best");
-bestScore[1].textContent=localStorage.getItem("best");
+
+let best=localStorage.getItem("best");
+if(!best){
+    localStorage.setItem("best",0);
+}
+if(best){
+    bestScore[0].textContent=best;
+    bestScore[1].textContent=best;
+}
 const grid = new Grid(board, gameover, GRID_SIZE, CELL_SIZE, GAP_SIZE);
 grid.addRandomLetter();
 let touchstartX;
