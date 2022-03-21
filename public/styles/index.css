@@ -136,6 +136,7 @@ h1{
     -webkit-animation-duration: 300ms;
     -webkit-animation-timing-function: ease-out;
     transition: 150ms ease-out;
+    -webkit-transition: 150ms ease-out;
     font-size: 10vmin;
 }
 .scoreContainer{
@@ -233,7 +234,7 @@ h1{
         transform: scale(0);
     }
     100%{
-        -webkit-transform: scale(1)
+        transform: scale(1)
     }
 }
 @-webkit-keyframes show {
