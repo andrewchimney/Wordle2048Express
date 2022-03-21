@@ -9,18 +9,20 @@ let touchstartX;
 let touchstartY;
 let touchendX;
 let touchendY;
-const board = document.getElementById("board");
-const gameover = document.getElementById("gameover");
-const currentScore = document.getElementsByClassName("currentScore");
-const bestScore = document.getElementsByClassName("bestScore");
-const grid = new Grid(board, gameover, GRID_SIZE, CELL_SIZE, GAP_SIZE);
+const BOARDELEM = document.getElementById("board");
+const GAMEOVERELEM = document.getElementById("gameover");
+const CURRENTSCOREELEM = document.getElementsByClassName("currentScore");
+const BESTSCOREELEM = document.getElementsByClassName("bestScore");
+const grid = new Grid(BOARDELEM, GAMEOVERELEM, GRID_SIZE, CELL_SIZE, GAP_SIZE);
+let tileArrayOld = JSON.stringify(grid.tileArray);
+
 
 /*local storage*/
 
 let best = localStorage.getItem("best");
 if (!best) localStorage.setItem("best", 0);
-bestScore[0].textContent = best;
-bestScore[1].textContent = best;
+BESTSCOREELEM[0].textContent = best;
+BESTSCOREELEM[1].textContent = best;
 
 /*event listeners*/
 
@@ -30,12 +32,12 @@ document.querySelectorAll(".newGame")[0].onclick = newGame;
 document.querySelectorAll(".newGame")[1].onclick = newGame;
 window.addEventListener("keydown", function (e) { if (e.key == "Enter") newGame(); });
 window.addEventListener("keydown", function (e) { e.preventDefault(); }); //stop scrolling on arrow keys
-board.addEventListener("touchstart", function (e) {
+BOARDELEM.addEventListener("touchstart", function (e) {
     e.preventDefault();
     touchstartX = e.changedTouches[0].screenX;
     touchstartY = e.changedTouches[0].screenY;
 });
-board.addEventListener('touchend', function (e) {
+BOARDELEM.addEventListener('touchend', function (e) {
     e.preventDefault();
     touchendX = e.changedTouches[0].screenX;
     touchendY = e.changedTouches[0].screenY;
@@ -96,6 +98,28 @@ function moveUp() {
     grid.slide("up", afterMove);
 
 }
+function afterMove() {
+    console.log(tileArrayOld== JSON.stringify(grid.tileArray));
+    if (!(tileArrayOld == JSON.stringify(grid.tileArray))) {
+        CURRENTSCOREELEM[0].textContent = grid.score;
+        grid.addRandomLetter();
+        console.log(grid.numOfTiles)
+        if (!grid.checkMoves() && grid.checkTileGridFull()) {
+            gameover();
+        } else setUpInput();
+        tileArrayOld = JSON.stringify(grid.tileArray);
+    } else setUpInput();
+}
+function gameover() {
+    if (localStorage.getItem("best") < grid.score) {
+        localStorage.setItem("best", grid.score);
+        BESTSCOREELEM[0].textContent = grid.score;
+        BESTSCOREELEM[1].textContent = grid.score;
+    }
+    CURRENTSCOREELEM[1].textContent = grid.score
+    GAMEOVERELEM.classList.add("show");
+    GAMEOVERELEM.style.setProperty("visibility", "unset");
+}
 function newGame() {
     grid.tileArray = new Array(GRID_SIZE);
     for (let i = 0; i < GRID_SIZE; i++) {
@@ -106,25 +130,11 @@ function newGame() {
         elemArray[j].remove();
     }
     grid.score = 0;
-    currentScore[0].textContent = grid.score;
-    gameover.style.setProperty("visibility", "hidden");
+    CURRENTSCOREELEM[0].textContent = grid.score;
+    GAMEOVERELEM.style.setProperty("visibility", "hidden");
     grid.numOfTiles = 0;
     grid.addRandomLetter();
     setUpInput();
-}
-function afterMove() {
-    currentScore[0].textContent = grid.score;
-    grid.addRandomLetter();
-    if (!grid.checkMoves() && grid.checkTileGridFull()) {
-        if (localStorage.getItem("best") < grid.score) {
-            localStorage.setItem("best", grid.score);
-            bestScore[0].textContent = grid.score;
-            bestScore[1].textContent = grid.score;
-        }
-        currentScore[1].textContent = grid.score
-        gameover.classList.add("show");
-        gameover.style.setProperty("visibility", "unset");
-    } else setUpInput();
 }
 function bitcoinCopy() {
     navigator.clipboard.writeText("bc1qxadr4ln7sqrlqcr03mh87a45avgzd8e3d3vep5");
