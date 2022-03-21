@@ -9,6 +9,7 @@ let touchstartX;
 let touchstartY;
 let touchendX;
 let touchendY;
+const navigator= window.navigator;
 const BOARDELEM = document.getElementById("board");
 const GAMEOVERELEM = document.getElementById("gameover");
 const CURRENTSCOREELEM = document.getElementsByClassName("currentScore");
@@ -100,11 +101,9 @@ function moveUp() {
 
 }
 function afterMove() {
-    console.log(tileArrayOld == JSON.stringify(grid.tileArray));
     if (!(tileArrayOld == JSON.stringify(grid.tileArray))) {
         CURRENTSCOREELEM[0].textContent = grid.score;
         grid.addRandomLetter();
-        console.log(grid.numOfTiles)
         if (!grid.checkMoves() && grid.checkTileGridFull()) {
             gameover();
         } else setUpInput();
@@ -143,12 +142,10 @@ function bitcoinCopy() {
 }
 function shareCopy() {
     let text = `wordle2048.com I got ${grid.score} 🥳`
-    try {
-        navigator.share(text)
-    } catch{
+    if(!navigator.canShare){
         navigator.clipboard.writeText(text);
         alert("Copied to clipboard");
-    }
+    } else navigator.share(text);
 
 }
 
