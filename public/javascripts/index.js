@@ -145,7 +145,14 @@ function shareCopy() {
     if(!navigator.canShare){
         navigator.clipboard.writeText(text);
         alert("Copied to clipboard");
-    } else navigator.share(text);
+    } else{
+        let shareData = {
+            title: 'Wordle2048',
+            text: `I got ${grid.score} 🥳`,
+            url: 'https://wordle2048.com',
+          };
+          navigator.share(shareData);
+    } 
 
 }
 
