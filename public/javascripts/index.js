@@ -30,6 +30,7 @@ setUpInput();
 document.querySelector(".bitcoin").onclick = bitcoinCopy;
 document.querySelectorAll(".newGame")[0].onclick = newGame;
 document.querySelectorAll(".newGame")[1].onclick = newGame;
+document.querySelector(".share").onclick = shareCopy;
 window.addEventListener("keydown", function (e) { if (e.key == "Enter") newGame(); });
 window.addEventListener("keydown", function (e) { e.preventDefault(); }); //stop scrolling on arrow keys
 BOARDELEM.addEventListener("touchstart", function (e) {
@@ -99,7 +100,7 @@ function moveUp() {
 
 }
 function afterMove() {
-    console.log(tileArrayOld== JSON.stringify(grid.tileArray));
+    console.log(tileArrayOld == JSON.stringify(grid.tileArray));
     if (!(tileArrayOld == JSON.stringify(grid.tileArray))) {
         CURRENTSCOREELEM[0].textContent = grid.score;
         grid.addRandomLetter();
@@ -138,7 +139,17 @@ function newGame() {
 }
 function bitcoinCopy() {
     navigator.clipboard.writeText("bc1qxadr4ln7sqrlqcr03mh87a45avgzd8e3d3vep5");
-    alert("Copied to clipboard")
+    alert("Copied to clipboard");
+}
+function shareCopy() {
+    let text = `wordle2048.com I got ${grid.score} 🥳`
+    try {
+        navigator.share(text)
+    } catch{
+        navigator.clipboard.writeText(text);
+        alert("Copied to clipboard");
+    }
+
 }
 
 /*basic game logic goes as follows:*/
