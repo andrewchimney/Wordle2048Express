@@ -16,8 +16,6 @@ export default class Tile{
         this.letter = letter;
         this.cv = false;
         this.ch= false;
-        this.element.style.setProperty("--ch", this.ch);
-        this.element.style.setProperty("--cv", this.cv);
         this.value = this.findValue(letter);
     }
     setX(newX){
@@ -30,29 +28,23 @@ export default class Tile{
     }
     setChTrue(){
         this.ch =true;
-        this.element.style.setProperty("--ch", this.ch);
         this.element.style.setProperty("background-color", "green");
     }
     setCvTrue(){
         this.cv =true;
-        this.element.style.setProperty("--cv", this.cv);
         this.element.style.setProperty("background-color", "green");
     }
     setChFalse(){
         this.ch =false;
-        this.element.style.setProperty("--ch", this.ch);
         this.element.style.setProperty("background-color", "red");
     }
     setCvFalse(){
         this.cv =false;
-        this.element.style.setProperty("--cv", this.cv);
         this.element.style.setProperty("background-color", "red");
     }
     setCvhFalse(){
         this.cv =false;
-        this.element.style.setProperty("--cv", this.cv);
         this.ch =false;
-        this.element.style.setProperty("--ch", this.ch);
         this.element.style.setProperty("background-color", "red");
 
     }
