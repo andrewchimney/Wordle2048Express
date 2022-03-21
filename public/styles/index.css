@@ -116,6 +116,7 @@ h1{
 .tile{
     --x: 4;
     --y: 4;
+    transform: translate(calc(var(--x)*(var(--cell-size) + var(--gap-size))),calc(var(--y)*(var(--cell-size) + var(--gap-size))));
     --ch: false;
     --cv: true;
     user-select: none;
@@ -127,8 +128,8 @@ h1{
     width: var(--cell-size);
     height: var(--cell-size);
     border-radius: 1vmin;
-    left: calc(var(--x)*(var(--cell-size) + var(--gap-size)));
-    top: calc(var(--y)*(var(--cell-size) + var(--gap-size)));
+    /*left: calc(var(--x)*(var(--cell-size) + var(--gap-size)));
+    top: calc(var(--y)*(var(--cell-size) + var(--gap-size)));*/
     animation-name: show;
     animation-duration: 300ms;
     animation-timing-function: ease-out;
@@ -231,10 +232,10 @@ h1{
 
 @keyframes show {
     0%{
-        transform: scale(0);
+        transform: translate(calc(var(--x)*(var(--cell-size) + var(--gap-size))),calc(var(--y)*(var(--cell-size) + var(--gap-size)))) scale(0);
     }
     100%{
-        transform: scale(1)
+        transform: translate(calc(var(--x)*(var(--cell-size) + var(--gap-size))),calc(var(--y)*(var(--cell-size) + var(--gap-size)))) scale(1)
     }
 }
 @-webkit-keyframes show {
