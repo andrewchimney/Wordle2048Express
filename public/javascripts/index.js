@@ -62,28 +62,19 @@ function handleSwipe() {
 }
 function handleInput(e) {
     switch (e.key) {
-
         case "ArrowLeft":
-            moveLeft();
-            break;
         case "a":
             moveLeft();
             break;
         case "ArrowRight":
-            moveRight();
-            break;
         case "d":
             moveRight();
             break;
         case "ArrowDown":
-            moveDown()
-            break;
         case "s":
             moveDown()
             break;
         case "ArrowUp":
-            moveUp();
-            break;
         case "w":
             moveUp();
             break;

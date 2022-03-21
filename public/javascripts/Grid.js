@@ -171,10 +171,14 @@ export default class Grid {
         }
 
     }
+
+    /* numOfTiles is a running total of tiles. checkTileGridFull just checks if there are this.GRID_SIZE^2 tiles  */
+
     checkTileGridFull() {
-        if (this.numOfTiles == 16) return true;
+        if (this.numOfTiles == (this.GRID_SIZE*this.GRID_SIZE)) return true;
         else return false;
     }
+
     checkMoves() {
 
         /*clears all tiles of collapse status*/
