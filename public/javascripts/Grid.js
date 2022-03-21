@@ -215,7 +215,7 @@ export default class Grid {
                     word = "";
                     continue;
                 }
-                if (this.wordListChecker.check(word)) {
+                if (this.wordListChecker.check2(word)) {
                     movesAvailable = true;
                     this.tileArray[xy][i].setCvTrue();
                     this.tileArray[xy][i + 1].setCvTrue();
@@ -236,7 +236,7 @@ export default class Grid {
                     continue;
                 }
 
-                if (this.wordListChecker.check(word)) {
+                if (this.wordListChecker.check2(word)) {
                     movesAvailable = true;
                     this.tileArray[i][xy].setChTrue();
                     this.tileArray[i + 1][xy].setChTrue();
@@ -266,7 +266,7 @@ export default class Grid {
                     word = "";
                     continue;
                 }
-                if (this.wordListChecker.check(word)) {
+                if (this.wordListChecker.check3(word)) {
                     movesAvailable = true;
                     this.tileArray[xy][i].setCvTrue();
                     this.tileArray[xy][i + 1].setCvTrue();
@@ -293,7 +293,7 @@ export default class Grid {
                     word = "";
                     continue;
                 }
-                if (this.wordListChecker.check(word)) {
+                if (this.wordListChecker.check3(word)) {
                     movesAvailable = true;
                     this.tileArray[i][xy].setChTrue();
                     this.tileArray[i + 1][xy].setChTrue();
@@ -312,7 +312,7 @@ export default class Grid {
                     break;
                 }
             }
-            if (this.wordListChecker.check(word)) {
+            if (this.wordListChecker.check4(word)) {
                 movesAvailable = true;
                 this.tileArray[xy][0].setCvTrue();
                 this.tileArray[xy][1].setCvTrue();
@@ -328,7 +328,7 @@ export default class Grid {
                     break;
                 }
             }
-            if (this.wordListChecker.check(word)) {
+            if (this.wordListChecker.check4(word)) {
                 movesAvailable = true;
                 this.tileArray[0][xy].setChTrue();
                 this.tileArray[1][xy].setChTrue();
