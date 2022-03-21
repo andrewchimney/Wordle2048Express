@@ -100,7 +100,7 @@ export default class Grid {
         this.tileArray[x][y] = new Tile(elem, x, y, letter);// creates javascript object tile and adds it to the array
         this.numOfTiles++;
     }
-    slide(direction) {
+    slide(direction, afterMove) {
         for (let i = 0; i < this.GRID_SIZE; i++) {
             let array;
             if (direction == "left") {
@@ -169,7 +169,7 @@ export default class Grid {
             }
 
         }
-
+        afterMove();
     }
 
     /* numOfTiles is a running total of tiles. checkTileGridFull just checks if there are this.GRID_SIZE^2 tiles  */

@@ -84,20 +84,16 @@ function handleInput(e) {
 }
 
 function moveLeft() {
-    setTimeout(afterMove, 130);
-    grid.slide("left");
+    grid.slide("left", afterMove);
 }
 function moveRight() {
-    setTimeout(afterMove, 130);
-    grid.slide("right");
+    grid.slide("right", afterMove);
 }
 function moveDown() {
-    setTimeout(afterMove, 130);
-    grid.slide("down");
+    grid.slide("down", afterMove);
 }
 function moveUp() {
-    setTimeout(afterMove, 130);
-    grid.slide("up");
+    grid.slide("up", afterMove);
 
 }
 function newGame() {
