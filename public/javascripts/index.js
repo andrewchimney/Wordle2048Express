@@ -148,8 +148,8 @@ function shareCopy() {
     } else{
         let shareData = {
             title: 'Wordle2048',
-            text: `I got ${grid.score} 🥳`,
             url: 'https://wordle2048.com',
+            text: `I got ${grid.score} 🥳`,
           };
           navigator.share(shareData);
     } 
