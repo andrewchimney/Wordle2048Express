@@ -232,17 +232,29 @@ h1{
 
 @keyframes show {
     0%{
-        transform: translate(calc(var(--x)*(var(--cell-size) + var(--gap-size))),calc(var(--y)*(var(--cell-size) + var(--gap-size)))) scale(0);
+        font-size: 0;
+        margin: calc(var(--cell-size)/2);
+        width:0;
+        height: 0;
     }
     100%{
-        transform: translate(calc(var(--x)*(var(--cell-size) + var(--gap-size))),calc(var(--y)*(var(--cell-size) + var(--gap-size)))) scale(1)
+        font-size: 10vmin;
+        margin: 0;
+        width:var(--cell-size);
+        height: var(--cell-size);
     }
 }
 @-webkit-keyframes show {
     0%{
-        -webkit-transform: scale(0) translate(calc(var(--x)*(var(--cell-size) + var(--gap-size))),calc(var(--y)*(var(--cell-size) + var(--gap-size))));
+        font-size: 0;
+        margin: calc(var(--cell-size)/2);
+        width:0;
+        height: 0;
     }
     100%{
-        -webkit-transform: scale(1) translate(calc(var(--x)*(var(--cell-size) + var(--gap-size))),calc(var(--y)*(var(--cell-size) + var(--gap-size))));
+        margin: 0;
+        font: 10vmin;
+        width:var(--cell-size);
+        height: var(--cell-size);
     }
 }
