@@ -13,11 +13,13 @@ export default class Grid {
     wordListChecker;
     score;
     numOfTiles;
+    vowelCounter;
 
     constructor(board, gameover, GRID_SIZE, CELL_SIZE, GAP_SIZE) {
         this.wordListChecker = new WordListChecker();
         this.score = 0;
         this.numOfTiles = 0;
+        this.vowelCounter=0;
         this.GRID_SIZE = GRID_SIZE;
         this.CELL_SIZE = CELL_SIZE;
         this.GAP_SIZE = GAP_SIZE;
@@ -84,10 +86,37 @@ export default class Grid {
         let elem = document.createElement("div"); //creates div for a tile
         elem.classList.add("tile"); //adds div class to tile
         //TODO make this have better chances for vowels and common letters
-        let letter = String.fromCharCode(Math.floor(Math.random() * 26) + 65);//generates a random letter
+        let letter;
+        if(this.vowelCounter%3==0){
+            letter = Math.floor(Math.random()*5);
+            console.log(letter);
+            switch(letter){
+                case 0:
+                    letter="A";
+                    break;
+                case 1:
+                    letter="E";
+                    break;
+                case 2:
+                    letter="I";
+                    this.vowelCounter++;
+                    break;
+                case 3:
+                    letter="O";
+                    break;
+                case 4:
+                    letter="U";
+                    this.vowelCounter++;
+                    break;
+                default:
+                    letter="asfsa"
+            }
+            console.log(letter);
+        } else{
+            letter = String.fromCharCode(Math.floor(Math.random() * 26) + 65);//generates a random letter
+        }
         elem.textContent = letter;//sets html = to letter
         board.appendChild(elem); // adds html elem to the board
-
         //generates positin for tile
         // TODO make this more efficient
         let x = Math.floor(Math.random() * this.GRID_SIZE);
@@ -99,6 +128,7 @@ export default class Grid {
 
         this.tileArray[x][y] = new Tile(elem, x, y, letter);// creates javascript object tile and adds it to the array
         this.numOfTiles++;
+        this.vowelCounter++;
     }
     slide(direction, afterMove) {
         for (let i = 0; i < this.GRID_SIZE; i++) {

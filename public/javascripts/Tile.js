@@ -1,4 +1,4 @@
-export default class Tile{
+export default class Tile {
     element;
     x;
     y;
@@ -7,58 +7,58 @@ export default class Tile{
     cv;
     value;
 
-    constructor(element, x, y, letter){
+    constructor(element, x, y, letter) {
         this.element = element;
         this.x = x;
         element.style.setProperty("--x", x);
-        this.y= y;
+        this.y = y;
         element.style.setProperty("--y", y);
         this.letter = letter;
         this.cv = false;
-        this.ch= false;
+        this.ch = false;
         this.value = this.findValue(letter);
     }
-    setX(newX){
+    setX(newX) {
         this.x = newX;
         this.element.style.setProperty("--x", this.x);
     }
-    setY(newY){
+    setY(newY) {
         this.y = newY;
         this.element.style.setProperty("--y", this.y);
     }
-    setChTrue(){
-        this.ch =true;
+    setChTrue() {
+        this.ch = true;
         this.element.style.setProperty("background-color", "green");
     }
-    setCvTrue(){
-        this.cv =true;
+    setCvTrue() {
+        this.cv = true;
         this.element.style.setProperty("background-color", "green");
     }
-    setChFalse(){
-        this.ch =false;
+    setChFalse() {
+        this.ch = false;
         this.element.style.setProperty("background-color", "red");
     }
-    setCvFalse(){
-        this.cv =false;
+    setCvFalse() {
+        this.cv = false;
         this.element.style.setProperty("background-color", "red");
     }
-    setCvhFalse(){
-        this.cv =false;
-        this.ch =false;
+    setCvhFalse() {
+        this.cv = false;
+        this.ch = false;
         this.element.style.setProperty("background-color", "red");
 
     }
-    isCollapse(){
+    isCollapse() {
         return this.cv || this.ch;
     }
-    findValue(letter){
-        switch(letter){
+    findValue(letter) {
+        switch (letter) {
             case "A":
             case "E":
             case "I":
             case "L":
             case "N":
-            case "O":   
+            case "O":
             case "R":
             case "S":
             case "T":
