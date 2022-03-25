@@ -240,11 +240,9 @@ h1{
 }
 @-webkit-keyframes show {
     0%{
-        -webkit-transform:translate(calc(var(--x)*(var(--cell-size) + var(--gap-size))),calc(var(--y)*(var(--cell-size) + var(--gap-size))));
-        -webkit-transform: scale(0);
+        -webkit-transform: scale(0) translate(calc(var(--x)*(var(--cell-size) + var(--gap-size))),calc(var(--y)*(var(--cell-size) + var(--gap-size))));
     }
     100%{
-        -webkit-transform:translate(calc(var(--x)*(var(--cell-size) + var(--gap-size))),calc(var(--y)*(var(--cell-size) + var(--gap-size))));
-        -webkit-transform: scale(1);
+        -webkit-transform: scale(1) translate(calc(var(--x)*(var(--cell-size) + var(--gap-size))),calc(var(--y)*(var(--cell-size) + var(--gap-size))));
     }
 }
