@@ -20,17 +20,17 @@ export default class Grid {
         this.score = 0;
         this.numOfTiles = 0;
         this.vowelCounter=0;
-        this.GRID_SIZE = GRID_SIZE;
-        this.CELL_SIZE = CELL_SIZE;
-        this.GAP_SIZE = GAP_SIZE;
         this.board = board;
         this.gameover = gameover;
-        this.board.style.setProperty("--grid_size", this.GRID_SIZE);
-        this.board.style.setProperty("--cell_size", `${this.CELL_SIZE}vmin`);
-        board.style.setProperty("--gap_size", `${this.GAP_SIZE}vmin`);
-        gameover.style.setProperty("--grid_size", this.GRID_SIZE);
-        gameover.style.setProperty("--cell_size", `${this.CELL_SIZE}vmin`);
-        gameover.style.setProperty("--gap_size", `${this.GAP_SIZE}vmin`);
+        this.GRID_SIZE = GRID_SIZE;
+        // this.CELL_SIZE = CELL_SIZE;
+        // this.GAP_SIZE = GAP_SIZE;
+        // this.board.style.setProperty("--grid_size", this.GRID_SIZE);
+        // this.board.style.setProperty("--cell_size", `${this.CELL_SIZE}vmin`);
+        // board.style.setProperty("--gap_size", `${this.GAP_SIZE}vmin`);
+        // gameover.style.setProperty("--grid_size", this.GRID_SIZE);
+        // gameover.style.setProperty("--cell_size", `${this.CELL_SIZE}vmin`);
+        // gameover.style.setProperty("--gap_size", `${this.GAP_SIZE}vmin`);
         this.cellArray = new Array(GRID_SIZE);
         this.tileArray = new Array(GRID_SIZE);
         for (let i = 0; i < GRID_SIZE; i++) {
@@ -89,7 +89,7 @@ export default class Grid {
         let letter;
         if(this.vowelCounter%3==0){
             letter = Math.floor(Math.random()*5);
-            console.log(letter);
+            
             switch(letter){
                 case 0:
                     letter="A";
@@ -111,7 +111,7 @@ export default class Grid {
                 default:
                     letter="asfsa"
             }
-            console.log(letter);
+            
         } else{
             letter = String.fromCharCode(Math.floor(Math.random() * 26) + 65);//generates a random letter
         }
@@ -366,6 +366,13 @@ export default class Grid {
                 this.tileArray[3][xy].setChTrue();
             }
             word="";
+        }
+        for(let r=0;r<this.GRID_SIZE;r++){
+            for(let c=0;c<this.GRID_SIZE;c++){
+                if( this.tileArray[r][c]!=null && this.tileArray[r][c].ch==true && this.tileArray[r][c].cv==true){
+                    this.tileArray[r][c].setCvhTrue();
+                }
+            }
         }
        return movesAvailable;
     }

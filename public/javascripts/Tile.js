@@ -6,6 +6,7 @@ export default class Tile {
     ch;
     cv;
     value;
+    valueElem;
 
     constructor(element, x, y, letter) {
         this.element = element;
@@ -17,6 +18,10 @@ export default class Tile {
         this.cv = false;
         this.ch = false;
         this.value = this.findValue(letter);
+        this.valueElem = document.createElement("span");
+        this.valueElem.classList.add("tileValue")
+        this.valueElem.textContent= this.value;
+        element.appendChild(this.valueElem);
     }
     setX(newX) {
         this.x = newX;
@@ -28,24 +33,27 @@ export default class Tile {
     }
     setChTrue() {
         this.ch = true;
-        this.element.style.setProperty("background-color", "green");
+        this.element.style.setProperty("background-color", "#bde0fe");
     }
     setCvTrue() {
         this.cv = true;
-        this.element.style.setProperty("background-color", "green");
+        this.element.style.setProperty("background-color", "#cdb4db");
+    }
+    setCvhTrue(){
+        this.element.style.setProperty("background-color", "#ffafcc");
     }
     setChFalse() {
         this.ch = false;
-        this.element.style.setProperty("background-color", "red");
+        this.element.style.setProperty("background-color", "rgb(192, 192, 192)");
     }
     setCvFalse() {
         this.cv = false;
-        this.element.style.setProperty("background-color", "red");
+        this.element.style.setProperty("background-color", "rgb(192, 192, 192)");
     }
     setCvhFalse() {
         this.cv = false;
         this.ch = false;
-        this.element.style.setProperty("background-color", "red");
+        this.element.style.setProperty("background-color", "rgb(192, 192, 192)");
 
     }
     isCollapse() {

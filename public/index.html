@@ -57,17 +57,39 @@
 
 
     </main>
-    <footer class="footer">
+    <section class="howtoplay">
+        <h2>How To Play</h2>
+        <p>Swipe or use arrow keys to create words. Collapse a word by swiping again to get points. Points are determined by the value of each tile destroyed.</p>
+        <ul class="tileList">
+            <li>
+                <div class="tileEx">R<span class="tileValueEx">1</span></div>
+                <p>creates no possible words.</p>
+            </li>
+            <li>
+                <div class="tileEx" style="background-color: rgb(189, 224, 254);">K<span class="tileValueEx">5</span></div>
+                <p>creates a word horizontally.</p>
+            </li>
+            <li>
+                <div class="tileEx" style="background-color: rgb(205, 180, 219);">P<span class="tileValueEx">3</span></div>
+                <p>creates a word vertically.</p>
+            </li>
+            <li>
+                <div class="tileEx" style="background-color: rgb(255, 175, 204);">A <span class="tileValueEx">1</span></div>
+                <p>creates a word horizontally and vertically.</p>
+
+            </li>
+        </ul>
+    </section>
+    <footer>
         <ul class="donate">
             <li class="bitcoin" data-tooltip="bc1qxadr4ln7sqrlqcr03mh87a45avgzd8e3d3vep5">
-                <span><img src="./images/bitcoinlogo.png" alt="bitcoin logo"> bitcoin</span>
+                <span><img src="./images/bitcoinlogo.png" alt="bitcoin logo">bitcoin</span>
             </li>
             <li>
-                <a href="https://www.paypal.com/us/home"><img src="./images/paypallogo.png" alt="paypal logo">
-                    paypal</a>
+                <span><a href="https://www.paypal.com/us/home"><img src="./images/paypallogo.png" alt="paypal logo">paypal</a></span>
             </li>
             <li>
-                <a href="https://venmo.com/"><img src="./images/venmologo.png" alt="venmo logo"> venmo</a>
+                <span><a href="https://venmo.com/"><img src="./images/venmologo.png" alt="venmo logo">venmo</a></span>
             </li>
         </ul>
     </footer>

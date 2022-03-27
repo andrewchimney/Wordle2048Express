@@ -3,8 +3,13 @@
         src: url("../fonts/orbitron/Orbitron-Regular.ttf");
         
 }
-
-body {
+:root{
+    --scale: min(100vw, 1000px);
+    font-size: calc(.01*var(--scale));
+    --grid-size: 4;
+    --cell-size: calc(.21* var(--scale));
+    --gap-size: calc(.02 * var(--scale));
+    --text: lightgray;
     user-select: none;
     display: flex;
     flex-direction: column;
@@ -14,11 +19,12 @@ body {
     background-color: black;
     box-sizing: border-box;
     font-family: orbitron;
+    
 }
 h1{
-    font-size: 7vmin;
-    color: white;
-    margin: 3vmin;
+    font-size: 10rem;
+    color: var(--text);
+    margin: .3em;
 }
 .gameContainer{
     display: flex;
@@ -26,59 +32,54 @@ h1{
     align-items: center;
 }
 #board{
-    --grid-size: 4;
-    --cell-size: 17vmin;
-    --gap-size: 1.5vmin;
     display: grid;
-    background-color: black;
     grid-template-columns: repeat(var(--grid-size), var(--cell-size));
     grid-template-rows: repeat(var(--grid-size), var(--cell-size));
     padding: 0;
-    margin: auto;
+    margin: 2rem;
     gap: var(--gap-size);
     border: var(--gap-size);
     border-style: solid;
     position: relative;
-    border-radius: 1vmin;
+    background-color: #232323;
+    border-color: #232323;
+    border-radius: 1rem;
 
 }
 #gameover{
-    --grid-size: 4;
-    --cell-size: 17vmin;
-    --gap-size: 1.5vmin;
     visibility: hidden;
     align-items: center;
     text-align: center;
-    height: calc(var(--grid-size)*var(--cell-size));
-    width: calc(var(--grid-size)*var(--cell-size));
-    background-color: white;
+    height: calc(var(--grid-size)*var(--cell-size) + ((var(--grid-size) - 1) * var(--gap-size)));
+    width: calc(var(--grid-size)*var(--cell-size) + ((var(--grid-size) - 1) * var(--gap-size)));
+    background-color: var(--text);
     padding: 0;
     margin: auto;
     position: absolute;
     z-index: 1;
-    border-radius: 1vmin;
+    border-radius: 1rem;
 }
 #gameover h1{
-    font-size: 9vmin;
+    font-size: 20rem;
     color: black;
     padding: 0;
-    padding-top: 7vmin;
+    padding-top: .5em;
     margin: 0;
 }
 #gameover .scoreList{
-    font-size: 7vmin;
-    padding: 4vmin;
+    font-size: 15rem;
+    padding: 1.2em;
     margin: 0;
     list-style: none;
 }
 #gameover .buttons{
     margin: 0;
     padding:0;
-    margin-top: 5vmin;
+    margin-top: 2em;
     display: flex;
-    height: 10vmin;
+    height: 10rem;
     justify-content: center;
-    gap: 3vmin;
+    gap: 10rem;
     list-style: none;
 }
 #gameover .buttons li{
@@ -88,14 +89,14 @@ h1{
 }
 #gameover .buttons button{
     font-family: orbitron;
-    font-size: 5.5vmin;
+    font-size: 12rem;
     cursor: pointer;
     user-select: none;
     background-color: black;
-    color: white;
+    color: var(--text);
     border: none;
     padding: .2em;
-    border-radius: 1vmin;
+    border-radius: .2em;
     margin: auto;
     text-decoration: none;
 }
@@ -109,8 +110,8 @@ h1{
     }
 }
 .cell{
-    background-color: grey;
-    border-radius: 1vmin;
+    background-color: #111111;
+    border-radius: 1rem;
 
 }
 .tile{
@@ -120,14 +121,14 @@ h1{
     --ch: false;
     --cv: true;
     user-select: none;
-    background-color: red;
+    background-color: rgb(192, 192, 192);
     position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
     width: var(--cell-size);
     height: var(--cell-size);
-    border-radius: 1vmin;
+    border-radius: 1rem;
     /*left: calc(var(--x)*(var(--cell-size) + var(--gap-size)));
     top: calc(var(--y)*(var(--cell-size) + var(--gap-size)));*/
     animation-name: show;
@@ -136,66 +137,122 @@ h1{
     -webkit-animation-name: show;
     -webkit-animation-duration: 300ms;
     -webkit-animation-timing-function: ease-out;
-    transition: 150ms ease-out;
-    -webkit-transition: 150ms ease-out;
-    font-size: 10vmin;
+    transition: transform 150ms ease-out;
+    -webkit-transition: transform 150ms ease-out;
+    font-size: 13rem;
+}
+.tileValue{
+    position: absolute;
+    right: calc(.1* var(--cell-size));
+    bottom: calc(.03 *var(--cell-size));
+    font-size: .3em;
 }
 .scoreContainer{
-    font-size: 3vmin;
+    font-size: 4rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 5vmin;
-    color: white;
+    gap: 4rem;
+    color: var(--text);
 }
 .scoreContainer .score{
     color: black;
-    background-color: white;
-    padding: 1vmin;
-    padding-top: .5vmin;
-    padding-bottom: .5vmin;
-    border-radius: 1vmin;
+    background-color: var(--text);
+    padding: 1rem;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    border-radius: 1rem;
 }
 .scoreContainer button{
     cursor: pointer;
     font-family: orbitron;
-    font-size: 3vmin;
+    font-size: 3.3rem;
     color: black;
-    background-color: white;
-    padding: 1vmin;
-    padding-top: .5vmin;
-    padding-bottom: .5vmin;
-    border-radius: 1vmin;
+    background-color: var(--text);
+    padding: 1.2rem;
+    border-radius: 1rem;
     border: none;
 }
-.footer{
-   color: white;
+.howtoplay{
+    color: var(--text);
+}
+
+h2{
+    font-size: 7rem;
+    padding: .1em;
+    margin: 0;
+}
+.howtoplay p {
+    font-size: 2.5rem;
+    width: var(--scale);
+}
+.tileList{
+   margin: 6rem;
+   padding: 0;
+   list-style: none;
+}
+.tileList li {
+    margin: 3rem;
+    padding: 0;
+    list-style: none;
+ }
+.tileList p{
+    text-align: left;
+    position: absolute;
+    font-size: 3rem;
+    transform: translate(13rem, -10rem);
+ }
+.tileEx{
+    position: relative;
+    color: black;
+    --ch: false;
+    --cv: true;
+    user-select: none;
+    background-color: rgb(192, 192, 192);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: calc(.5 * var(--cell-size));
+    height: calc(.5 * var(--cell-size));
+    border-radius: 1rem;
+    font-size: 6.5rem;
+}
+.tileValueEx{
+    color: black;
+    position: absolute;
+    right: calc(.05* var(--cell-size));
+    bottom: calc(.015 *var(--cell-size));
+    font-size: 2rem;
 }
 .donate{
-    font-size: 2.5vmin;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6rem;
+    font-size: 4rem;
     list-style: none;
     margin: 0;
     padding: 0;
 }
 .donate li{
     cursor: pointer;
-    display: inline;
+    display: inline-block;
     color: black;
-    margin: 2vmin;
-    padding: 1vmin;
-    border-radius: 1vmin;
-    background-color: white;
+    padding: 1rem;
+    border-radius: 1rem;
+    background-color: var(--text);
+    margin: 0;
 }
 .donate a, .donate a:visited{
     text-align: none;
     color: black;
-    text-decoration: none!important;
+    text-decoration: none;
 }
 .donate img{
     position: relative;
-    top: 2vmin;
-    width: 2em;
-    height: 2em;
+    top: .2em;
+    width: 1em;
+    height: 1em;
 }
 *[data-tooltip]{
     position: relative;
@@ -204,8 +261,8 @@ h1{
     content: attr(data-tooltip);
 
     position: absolute;
-    top: -20px;
-    left: -6vmin;
+    top: -4rem;
+    left: -15rem;
     width: auto;
 
     pointer-events: none;
@@ -217,11 +274,11 @@ h1{
     transition: opacity .15s ease-in-out;
 
     display: block;
-    font-size: 2vmin;
-    line-height: 2vmin;
-    background: white;
-    padding: 2px 2px;
-    border-radius: .5vmin;
+    font-size: 3rem;
+    line-height: 3rem;
+    background: var(--text);
+    padding: .2rem .2rem;
+    border-radius: .5rem;
     box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.4);
 }
 
@@ -238,7 +295,7 @@ h1{
         height: 0;
     }
     100%{
-        font-size: 10vmin;
+        font-size: 13rem;
         margin: 0;
         width:var(--cell-size);
         height: var(--cell-size);
@@ -253,7 +310,7 @@ h1{
     }
     100%{
         margin: 0;
-        font: 10vmin;
+        font: 13rem;
         width:var(--cell-size);
         height: var(--cell-size);
     }
