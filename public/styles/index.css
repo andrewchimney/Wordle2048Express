@@ -19,6 +19,7 @@
     background-color: black;
     box-sizing: border-box;
     font-family: orbitron;
+    overflow-x: hidden;
     
 }
 h1{
@@ -178,15 +179,16 @@ h1{
 
 h2{
     font-size: 7rem;
-    padding: .1em;
-    margin: 0;
+    padding: 0;
+    margin: 2rem;
 }
 .howtoplay p {
     font-size: 2.5rem;
-    width: var(--scale);
+    width: calc( .8* var(--scale));
+    margin: auto;
 }
 .tileList{
-   margin: 6rem;
+   margin: 3rem;
    padding: 0;
    list-style: none;
 }
