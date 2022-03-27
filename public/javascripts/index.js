@@ -22,8 +22,10 @@ let tileArrayOld = JSON.stringify(grid.tileArray);
 BESTSCOREELEM[0].textContent = 0;
 BESTSCOREELEM[1].textContent = 0;
 let best = localStorage.getItem("best");
-BESTSCOREELEM[0].textContent = best;
-BESTSCOREELEM[1].textContent = best;
+if(best){
+    BESTSCOREELEM[0].textContent = best;
+    BESTSCOREELEM[1].textContent = best;
+}
 
 /*event listeners*/
 
