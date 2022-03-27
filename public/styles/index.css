@@ -60,15 +60,15 @@ h1{
     border-radius: 1rem;
 }
 #gameover h1{
-    font-size: 20rem;
+    font-size: 12rem;
     color: black;
     padding: 0;
     padding-top: .5em;
     margin: 0;
 }
 #gameover .scoreList{
-    font-size: 15rem;
-    padding: 1.2em;
+    font-size: 8rem;
+    padding: 1.7em;
     margin: 0;
     list-style: none;
 }
@@ -79,20 +79,19 @@ h1{
     display: flex;
     height: 10rem;
     justify-content: center;
-    gap: 10rem;
+    gap: 5rem;
     list-style: none;
 }
 #gameover .buttons li{
     margin: 0;
-    text-decoration: none;
     padding: 0;
 }
 #gameover .buttons button{
     font-family: orbitron;
-    font-size: 12rem;
+    font-size: 8rem;
     cursor: pointer;
     user-select: none;
-    background-color: black;
+    background-color: #232323;
     color: var(--text);
     border: none;
     padding: .2em;
@@ -101,7 +100,7 @@ h1{
     text-decoration: none;
 }
 .show{
-    opacity: 95%;
+    opacity: 97%;
     animation: showGameover 1000ms ease-out
 }
 @keyframes showGameover{

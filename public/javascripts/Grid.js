@@ -199,7 +199,7 @@ export default class Grid {
             }
 
         }
-        afterMove();
+        setTimeout(afterMove, 100);
     }
 
     /* numOfTiles is a running total of tiles. checkTileGridFull just checks if there are this.GRID_SIZE^2 tiles  */
