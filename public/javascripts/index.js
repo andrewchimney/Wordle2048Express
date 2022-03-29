@@ -140,7 +140,7 @@ function newGame() {
 }
 function bitcoinCopy() {
     navigator.clipboard.writeText("bc1qxadr4ln7sqrlqcr03mh87a45avgzd8e3d3vep5");
-    alert("Copied to clipboard");
+    copyToaster();
 }
 function shareCopy() {
     let text = `wordle2048.com I got ${grid.score} 🥳`
@@ -156,6 +156,11 @@ function shareCopy() {
           navigator.share(shareData);
     } 
 
+}
+function copyToaster(){
+    let toaster = document.querySelector(".toaster");
+    toaster.style.setProperty("display", "unset");
+    setTimeout(()=> {toaster.style.setProperty("display", "none");}, 5000);
 }
 
 /*basic game logic goes as follows:*/

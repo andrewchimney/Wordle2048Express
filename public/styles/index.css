@@ -316,3 +316,12 @@ h2{
         height: var(--cell-size);
     }
 }
+.toaster{
+    z-index: 10;
+    background-color: white;
+    width: 50rem;
+    height: 50rem;
+    position: fixed;
+    display: none;
+    top: 20rem;
+}
