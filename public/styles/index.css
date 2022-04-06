@@ -19,7 +19,9 @@
     box-sizing: border-box;
     font-family: orbitron;
     overflow-x: hidden;
-    
+}
+body{
+    margin: 0;
 }
 h1{
     font-size: 10rem;
