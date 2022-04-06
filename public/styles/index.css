@@ -190,7 +190,6 @@ h1{
 }
 .howtoplay{
     color: var(--text);
-    justify-content: center;
 }
 
 h2{
@@ -204,10 +203,15 @@ h2{
     margin: auto;
 }
 .tileList{
-   margin: 3rem;
+    width: 90rem;
+    margin-top: 4rem;
+    background-color: #111111;
    padding: 0;
    list-style: none;
-   padding-left: 5rem;
+   border-radius: 1rem;
+   border: var(--gap-size) solid #232323;
+   margin-left: auto;
+   margin-right: auto;
 }
 .tileList li {
     margin: 3rem;
