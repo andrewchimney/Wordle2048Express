@@ -2,11 +2,13 @@ export default class WordListChecker {
     wordList2;
     wordList3;
     wordList4;
-    constructor() {
+    GRID_SIZE;
+    constructor(GRID_SIZE) {
         this.getWordlist();
         this.comparer = new Intl.Collator('en');
+        this.movesAvailable=false;
     }
-    check2(word) {
+    check2Exists(word) {
         let min = 0;
         let max = this.wordList2.length - 1;
 
@@ -23,7 +25,7 @@ export default class WordListChecker {
 
 
     }
-    check3(word) {
+    check3Exists(word) {
         let min = 0;
         let max = this.wordList3.length - 1;
 
@@ -40,7 +42,7 @@ export default class WordListChecker {
 
 
     }
-    check4(word) {
+    check4Exists(word) {
         let min = 0;
         let max = this.wordList4.length - 1;
 
@@ -57,6 +59,65 @@ export default class WordListChecker {
 
 
     }
+    check2LengthCV(array, word){
+        if(this.check2Exists(word)){
+            array[0].setCvTrue();
+            array[1].setCvTrue();
+            this.movesAvailable=true;
+        }
+    }
+    check3LengthCV(array, word){
+        this.check2LengthCV(array.slice(0,2), word.substring(0,2));
+        this.check2LengthCV(array.slice(1,3), word.substring(1,3));
+        if(this.check3Exists(word)){
+            array[0].setCvTrue();
+            array[1].setCvTrue();
+            array[2].setCvTrue();
+            this.movesAvailable=true;
+        }
+    }
+    check4LengthCV(array, word){
+        this.check3LengthCV(array.slice(0,3),word.substring(0,3));
+        this.check3LengthCV(array.slice(1,4),word.substring(1,4));
+        if(this.check4Exists(word)){
+            array[0].setCvTrue();
+            array[1].setCvTrue();
+            array[2].setCvTrue();
+            array[3].setCvTrue();
+            this.movesAvailable=true;
+        }
+
+    }
+    check2LengthCH(array, word){
+        if(this.check2Exists(word)){
+            array[0].setChTrue();
+            array[1].setChTrue();
+            this.movesAvailable=true;
+        }
+    }
+    check3LengthCH(array, word){
+        this.check2LengthCH(array.slice(0,2), word.substring(0,2));
+        this.check2LengthCH(array.slice(1,3), word.substring(1,3));
+        if(this.check3Exists(word)){
+            array[0].setChTrue();
+            array[1].setChTrue();
+            array[2].setChTrue();
+            this.movesAvailable=true;
+        }
+    }
+    check4LengthCH(array, word){
+        this.check3LengthCH(array.slice(0,3),word.substring(0,3));
+        this.check3LengthCH(array.slice(1,4),word.substring(1,4));
+        if(this.check4Exists(word)){
+            array[0].setChTrue();
+            array[1].setChTrue();
+            array[2].setChTrue();
+            array[3].setChTrue();
+            this.movesAvailable=true;
+        }
+
+    }
+    
     async getWordlist() {
         this.wordList2 = await fetch("../wordlists/wordlist2.json", {
             method: "get"

@@ -120,7 +120,7 @@ function gameover() {
     }
     CURRENTSCOREELEM[1].textContent = grid.score
     GAMEOVERELEM.classList.add("show");
-    GAMEOVERELEM.style.setProperty("visibility", "unset");
+    GAMEOVERELEM.style.setProperty("display", "unset");
 }
 function newGame() {
     grid.tileArray = new Array(GRID_SIZE);
@@ -143,24 +143,33 @@ function bitcoinCopy() {
     copyToaster();
 }
 function shareCopy() {
-    let text = `wordle2048.com I got ${grid.score} 🥳`
+    let text = `I got ${grid.score} `;
+    if( grid.score<100){
+        text+= "🤡"
+    } else if(grid.score<500){
+        text+="🥳";
+    }else{
+        text+= "👑"
+    }
     if(!navigator.canShare){
-        navigator.clipboard.writeText(text);
-        alert("Copied to clipboard");
+        navigator.clipboard.writeText(`wordle2048.com ${text}`);
+        copyToaster();
     } else{
         let shareData = {
             title: 'Wordle2048',
             url: 'https://wordle2048.com',
-            text: `I got ${grid.score} 🥳`,
+            text: text,
           };
           navigator.share(shareData);
     } 
 
 }
-function copyToaster(){
-    let toaster = document.querySelector(".toaster");
-    toaster.style.setProperty("display", "unset");
-    setTimeout(()=> {toaster.style.setProperty("display", "none");}, 5000);
+function copyToaster(){    
+    let toaster = document.createElement("div"); 
+    toaster.classList.add("toaster");
+    toaster.textContent= "copied to clipboard";
+    document.body.appendChild(toaster);
+    setTimeout(()=> {document.body.removeChild(toaster)}, 3000);
 }
 
 /*basic game logic goes as follows:*/

@@ -146,38 +146,52 @@ export default class Grid {
                 array = this.getColumn(i).reverse();
             }
 
-            if (array[0]) {
-                if (array[0].ch && (direction == "left" || direction == "right")) {
-                    this.score += array[0].value;
-                    array[0].element.remove();
-                    this.numOfTiles--;
-                    array[0] = null;
-                } else if (array[0].cv && (direction == "up" || direction == "down")) {
-                    this.score += array[0].value;
-                    array[0].element.remove();
-                    this.numOfTiles--;
-                    array[0] = null;
-                }
-            }
+            // if (array[0]) {
+            //     if (array[0].ch && (direction == "left" || direction == "right")) {
+            //         this.score += array[0].value;
+            //         array[0].element.remove();
+            //         this.numOfTiles--;
+            //         array[0] = null;
+            //     } else if (array[0].cv && (direction == "up" || direction == "down")) {
+            //         this.score += array[0].value;
+            //         array[0].element.remove();
+            //         this.numOfTiles--;
+            //         array[0] = null;
+            //     }
+            // }
 
-            for (let tile = 1; tile < this.GRID_SIZE; tile++) {
+            for (let tile = 0; tile < this.GRID_SIZE; tile++) {
                 if (array[tile]) {
                     if (array[tile].ch && (direction == "left" || direction == "right")) {
                         this.score += array[tile].value;
-                        array[tile].element.remove();
                         this.numOfTiles--;
+                        if(direction=="left"){
+                            array[tile].setX(0);
+                        }else{
+                            array[tile].setX(3);
+                        }
+                        array[tile].element.style.setProperty("opacity","0");
+                        let elem = array[tile].element;
+                        setTimeout(()=>{elem.remove()}, 150);
                         array[tile] = null;
                         continue;
                     }
                     if (array[tile].cv && (direction == "up" || direction == "down")) {
                         this.score += array[tile].value;
-                        array[tile].element.remove();
                         this.numOfTiles--;
+                        if(direction=="up"){
+                            array[tile].setY(0);
+                        }else{
+                            array[tile].setY(3);
+                        }
+                        array[tile].element.style.setProperty("opacity","0");
+                        let elem = array[tile].element;
+                        setTimeout(()=>{elem.remove()}, 150);
                         array[tile] = null;
                         continue;
                     }
                     for (let nextTile = tile - 1; nextTile > -1; nextTile--) {
-                        if (array[nextTile] == null) {
+                        while (array[nextTile] == null) {
                             array[nextTile] = array[tile];
                             array[tile] = null;
                             tile = nextTile;
@@ -208,12 +222,11 @@ export default class Grid {
         if (this.numOfTiles == (this.GRID_SIZE*this.GRID_SIZE)) return true;
         else return false;
     }
-
     checkMoves() {
 
         /*clears all tiles of collapse status*/
 
-        let movesAvailable = false;
+        this.wordListChecker.movesAvailable = false;
         for (let x = 0; x < this.GRID_SIZE; x++) {
             for (let y = 0; y < this.GRID_SIZE; y++) {
                 if (this.tileArray[x][y]) {
@@ -223,157 +236,211 @@ export default class Grid {
             }
         }
 
+        for (let x = 0; x < this.GRID_SIZE; x++) {
+            let arrayX = this.getColumn(x).filter(n => n);
+            let word= "";
+            for(let i=0;i<arrayX.length;i++){
+                word+= arrayX[i].letter;
+            }
+            
+            if(arrayX.length==4){
+                this.wordListChecker.check4LengthCV(arrayX, word)
+            }
+            if(arrayX.length==3){
+                this.wordListChecker.check3LengthCV(arrayX, word)
+            }
+            if(arrayX.length==2){
+                this.wordListChecker.check2LengthCV(arrayX, word)
+            }
+
+
+        }
+        for (let y = 0; y < this.GRID_SIZE; y++) {
+            let arrayY = this.getRow(y).filter(n => n);
+            let word= "";
+            for(let i=0;i<arrayY.length;i++){
+                word+= arrayY[i].letter;
+            }
+            if(arrayY.length==4){
+                this.wordListChecker.check4LengthCH(arrayY, word)
+            }
+            if(arrayY.length==3){
+                this.wordListChecker.check3LengthCH(arrayY, word)
+            }
+            if(arrayY.length==2){
+                this.wordListChecker.check2LengthCH(arrayY, word)
+            }
+
+
+        }
+
+        for(let r=0;r<this.GRID_SIZE;r++){
+                    for(let c=0;c<this.GRID_SIZE;c++){
+                        if( this.tileArray[r][c]!=null && this.tileArray[r][c].ch==true && this.tileArray[r][c].cv==true){
+                            this.tileArray[r][c].setCvhTrue();
+                        }
+                    }
+                }
+        return this.wordListChecker.movesAvailable;
+
+
+
+
+
+
+
+
         /*checks tiles for collapse status */
 
-        for (let xy = 0; xy < this.GRID_SIZE; xy++) {
-            let arrayX = this.getColumn(xy);
-            let arrayY = this.getRow(xy);
-            let word = "";
+    //     for (let xy = 0; xy < this.GRID_SIZE; xy++) {
+    //         let arrayX = this.getColumn(xy);
+    //         let arrayY = this.getRow(xy);
+    //         let word = "";
 
-            /* checks for two letter words vertical and horizontal */
+    //         /* checks for two letter words vertical and horizontal */
 
-            for (let i = 0; i < 3; i++) {
-                if (arrayX[i]) {
-                    word += arrayX[i].letter;
-                } else {
-                    word = "";
-                    continue;
-                }
-                if (arrayX[i + 1]) {
-                    word += arrayX[i + 1].letter;
-                } else {
-                    word = "";
-                    continue;
-                }
-                if (this.wordListChecker.check2(word)) {
-                    movesAvailable = true;
-                    this.tileArray[xy][i].setCvTrue();
-                    this.tileArray[xy][i + 1].setCvTrue();
-                }
-                word = "";
-            }
-            for (let i = 0; i < 3; i++) {
-                if (arrayY[i]) {
-                    word += arrayY[i].letter;
-                } else {
-                    word = "";
-                    continue;
-                }
-                if (arrayY[i + 1]) {
-                    word += arrayY[i + 1].letter;
-                } else {
-                    word = "";
-                    continue;
-                }
+    //         for (let i = 0; i < 3; i++) {
+    //             if (arrayX[i]) {
+    //                 word += arrayX[i].letter;
+    //             } else {
+    //                 word = "";
+    //                 continue;
+    //             }
+    //             if (arrayX[i + 1]) {
+    //                 word += arrayX[i + 1].letter;
+    //             } else {
+    //                 word = "";
+    //                 continue;
+    //             }
+    //             if (this.wordListChecker.check2(word)) {
+    //                 movesAvailable = true;
+    //                 this.tileArray[xy][i].setCvTrue();
+    //                 this.tileArray[xy][i + 1].setCvTrue();
+    //             }
+    //             word = "";
+    //         }
+    //         for (let i = 0; i < 3; i++) {
+    //             if (arrayY[i]) {
+    //                 word += arrayY[i].letter;
+    //             } else {
+    //                 word = "";
+    //                 continue;
+    //             }
+    //             if (arrayY[i + 1]) {
+    //                 word += arrayY[i + 1].letter;
+    //             } else {
+    //                 word = "";
+    //                 continue;
+    //             }
 
-                if (this.wordListChecker.check2(word)) {
-                    movesAvailable = true;
-                    this.tileArray[i][xy].setChTrue();
-                    this.tileArray[i + 1][xy].setChTrue();
-                }
-                word = "";
+    //             if (this.wordListChecker.check2(word)) {
+    //                 movesAvailable = true;
+    //                 this.tileArray[i][xy].setChTrue();
+    //                 this.tileArray[i + 1][xy].setChTrue();
+    //             }
+    //             word = "";
 
-            }
+    //         }
 
-            /*checks for three letter words horizontal and vertical*/
+    //         /*checks for three letter words horizontal and vertical*/
 
-            for (let i = 0; i < 2; i++) {
-                if (arrayX[i]) {
-                    word += arrayX[i].letter
-                } else {
-                    word = "";
-                    continue;
-                }
-                if (arrayX[i + 1]) {
-                    word += arrayX[i + 1].letter
-                } else {
-                    word = "";
-                    continue;
-                }
-                if (arrayX[i + 2]) {
-                    word += arrayX[i + 2].letter
-                } else {
-                    word = "";
-                    continue;
-                }
-                if (this.wordListChecker.check3(word)) {
-                    movesAvailable = true;
-                    this.tileArray[xy][i].setCvTrue();
-                    this.tileArray[xy][i + 1].setCvTrue();
-                    this.tileArray[xy][i + 2].setCvTrue();
-                }
-                word = "";
-            }
-            for (let i = 0; i < 2; i++) {
-                if (arrayY[i]) {
-                    word += arrayY[i].letter
-                } else {
-                    word = "";
-                    continue;
-                }
-                if (arrayY[i + 1]) {
-                    word += arrayY[i + 1].letter
-                } else {
-                    word = "";
-                    continue;
-                }
-                if (arrayY[i + 2]) {
-                    word += arrayY[i + 2].letter
-                } else {
-                    word = "";
-                    continue;
-                }
-                if (this.wordListChecker.check3(word)) {
-                    movesAvailable = true;
-                    this.tileArray[i][xy].setChTrue();
-                    this.tileArray[i + 1][xy].setChTrue();
-                    this.tileArray[i + 2][xy].setChTrue();
-                }
-                word = "";
-            }
+    //         for (let i = 0; i < 2; i++) {
+    //             if (arrayX[i]) {
+    //                 word += arrayX[i].letter
+    //             } else {
+    //                 word = "";
+    //                 continue;
+    //             }
+    //             if (arrayX[i + 1]) {
+    //                 word += arrayX[i + 1].letter
+    //             } else {
+    //                 word = "";
+    //                 continue;
+    //             }
+    //             if (arrayX[i + 2]) {
+    //                 word += arrayX[i + 2].letter
+    //             } else {
+    //                 word = "";
+    //                 continue;
+    //             }
+    //             if (this.wordListChecker.check3(word)) {
+    //                 movesAvailable = true;
+    //                 this.tileArray[xy][i].setCvTrue();
+    //                 this.tileArray[xy][i + 1].setCvTrue();
+    //                 this.tileArray[xy][i + 2].setCvTrue();
+    //             }
+    //             word = "";
+    //         }
+    //         for (let i = 0; i < 2; i++) {
+    //             if (arrayY[i]) {
+    //                 word += arrayY[i].letter
+    //             } else {
+    //                 word = "";
+    //                 continue;
+    //             }
+    //             if (arrayY[i + 1]) {
+    //                 word += arrayY[i + 1].letter
+    //             } else {
+    //                 word = "";
+    //                 continue;
+    //             }
+    //             if (arrayY[i + 2]) {
+    //                 word += arrayY[i + 2].letter
+    //             } else {
+    //                 word = "";
+    //                 continue;
+    //             }
+    //             if (this.wordListChecker.check3(word)) {
+    //                 movesAvailable = true;
+    //                 this.tileArray[i][xy].setChTrue();
+    //                 this.tileArray[i + 1][xy].setChTrue();
+    //                 this.tileArray[i + 2][xy].setChTrue();
+    //             }
+    //             word = "";
+    //         }
 
-            /*checks for four letter words horizontally or vertically */
+    //         /*checks for four letter words horizontally or vertically */
 
-            for (let i = 0; i < 4; i++) {
-                if (arrayX[i]) {
-                    word += arrayX[i].letter
-                } else {
-                    word = "";
-                    break;
-                }
-            }
-            if (this.wordListChecker.check4(word)) {
-                movesAvailable = true;
-                this.tileArray[xy][0].setCvTrue();
-                this.tileArray[xy][1].setCvTrue();
-                this.tileArray[xy][2].setCvTrue();
-                this.tileArray[xy][3].setCvTrue();
-            }
-            word = "";
-            for (let i = 0; i < 4; i++) {
-                if (arrayY[i]) {
-                    word += arrayY[i].letter
-                } else {
-                    word = "";
-                    break;
-                }
-            }
-            if (this.wordListChecker.check4(word)) {
-                movesAvailable = true;
-                this.tileArray[0][xy].setChTrue();
-                this.tileArray[1][xy].setChTrue();
-                this.tileArray[2][xy].setChTrue();
-                this.tileArray[3][xy].setChTrue();
-            }
-            word="";
-        }
-        for(let r=0;r<this.GRID_SIZE;r++){
-            for(let c=0;c<this.GRID_SIZE;c++){
-                if( this.tileArray[r][c]!=null && this.tileArray[r][c].ch==true && this.tileArray[r][c].cv==true){
-                    this.tileArray[r][c].setCvhTrue();
-                }
-            }
-        }
-       return movesAvailable;
-    }
+    //         for (let i = 0; i < 4; i++) {
+    //             if (arrayX[i]) {
+    //                 word += arrayX[i].letter
+    //             } else {
+    //                 word = "";
+    //                 break;
+    //             }
+    //         }
+    //         if (this.wordListChecker.check4(word)) {
+    //             movesAvailable = true;
+    //             this.tileArray[xy][0].setCvTrue();
+    //             this.tileArray[xy][1].setCvTrue();
+    //             this.tileArray[xy][2].setCvTrue();
+    //             this.tileArray[xy][3].setCvTrue();
+    //         }
+    //         word = "";
+    //         for (let i = 0; i < 4; i++) {
+    //             if (arrayY[i]) {
+    //                 word += arrayY[i].letter
+    //             } else {
+    //                 word = "";
+    //                 break;
+    //             }
+    //         }
+    //         if (this.wordListChecker.check4(word)) {
+    //             movesAvailable = true;
+    //             this.tileArray[0][xy].setChTrue();
+    //             this.tileArray[1][xy].setChTrue();
+    //             this.tileArray[2][xy].setChTrue();
+    //             this.tileArray[3][xy].setChTrue();
+    //         }
+    //         word="";
+    //     }
+    //     for(let r=0;r<this.GRID_SIZE;r++){
+    //         for(let c=0;c<this.GRID_SIZE;c++){
+    //             if( this.tileArray[r][c]!=null && this.tileArray[r][c].ch==true && this.tileArray[r][c].cv==true){
+    //                 this.tileArray[r][c].setCvhTrue();
+    //             }
+    //         }
+    //     }
+    //    return movesAvailable;
+     }
 }
