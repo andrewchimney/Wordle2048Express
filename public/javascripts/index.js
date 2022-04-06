@@ -132,7 +132,7 @@ function newGame() {
     }
     grid.score = 0;
     CURRENTSCOREELEM[0].textContent = grid.score;
-    GAMEOVERELEM.style.setProperty("visibility", "hidden");
+    GAMEOVERELEM.style.setProperty("display", "none");
     grid.numOfTiles = 0;
     grid.addRandomLetter();
     setUpInput();
