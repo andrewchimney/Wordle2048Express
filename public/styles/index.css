@@ -197,7 +197,8 @@ h1{
 h2{
     font-size: 9rem;
     padding: 0;
-    margin: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 .howtoplay p {
     font-size: 3.5rem;
