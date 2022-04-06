@@ -4,7 +4,7 @@
         
 }
 :root{
-    --scale: min(100vw, 80vh);
+    --scale: min(98vw, 80vh);
     font-size: calc(.01*var(--scale));
     --grid-size: 4;
     --cell-size: calc(.21* var(--scale));
