@@ -30,7 +30,6 @@ if(best){
 /*event listeners*/
 
 setUpInput();
-document.querySelector(".bitcoin").onclick = bitcoinCopy;
 document.querySelectorAll(".newGame")[0].onclick = newGame;
 document.querySelectorAll(".newGame")[1].onclick = newGame;
 document.querySelector(".share").onclick = shareCopy;

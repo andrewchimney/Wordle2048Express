@@ -37,14 +37,14 @@ export default class Grid {
             this.cellArray[i] = new Array(GRID_SIZE).fill(null);
             this.tileArray[i] = new Array(GRID_SIZE).fill(null);
         }
-        for (let x = 0; x < GRID_SIZE; x++) {
-            for (let y = 0; y < GRID_SIZE; y++) {
-                let elem = document.createElement("div");
-                elem.classList.add("cell");
-                board.appendChild(elem);
-                this.cellArray[x][y] = new Cell(elem, x, y);
-            }
-        }
+        // for (let x = 0; x < GRID_SIZE; x++) {
+        //     for (let y = 0; y < GRID_SIZE; y++) {
+        //         let elem = document.createElement("div");
+        //         elem.classList.add("cell");
+        //         board.appendChild(elem);
+        //         this.cellArray[x][y] = new Cell(elem, x, y);
+        //     }
+        // }
         this.addRandomLetter();
     }
 
